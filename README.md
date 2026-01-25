@@ -27,10 +27,10 @@ docker exec -it str_sentinel_app bash
 
 ## Work Log
 
-**Thursday, 01/22/26**
-
-- Built barebones IoT testing environment inside Docker.
-  - HikVision Camera, Smart Thermostat, Linux Server (mock media server / PC)
+**Saturday, 01/24/26**
+- Cleanup *main.py*
+- Finalize Progress Report 01
+- Initial GitHub Commit
 
 **Friday 01/23/26**
 
@@ -43,7 +43,13 @@ docker exec -it str_sentinel_app bash
 
   - Creates discovery.log file inside /app.
 
-  
+**Thursday, 01/22/26**
+
+- Built barebones IoT testing environment inside Docker.
+  - HikVision Camera, Smart Thermostat, Linux Server (mock media server / PC)
+
+
+
 
 ## Future Work
 
