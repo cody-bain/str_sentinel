@@ -1,0 +1,61 @@
+networks:
+  str_simulation_net:
+    name: str_sentinel_net
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+
+services:
+  # Mock Hikvision Camera
+  camera:
+    image: nginx:alpine
+    container_name: str_camera_hikvision
+    mac_address: "00:40:8C:11:22:33"  # 00:40:8C = real Hikvision OUI
+    networks:
+      str_simulation_net:
+        ipv4_address: 172.20.0.10
+    ports:
+      - "8081:80"
+    command: /bin/sh -c "echo '<html><head><title>Hikvision-Web-Login</title></head><body><h1>Login</h1></body></html>' > /usr/share/nginx/html/index.html && nginx -g 'daemon off;'"
+
+  # Mock Smart Lock with vulnerable SSH
+  smart_lock:
+    platform: linux/amd64
+    image: rastasheep/ubuntu-sshd
+    container_name: str_lock_yale
+    mac_address: "00:17:7A:AA:BB:CC"  # 00:17:7A = real Yale/Assa Abloy OUI
+    networks:
+      str_simulation_net:
+        ipv4_address: 172.20.0.20
+    environment:
+      - USER_PASSWORD=root
+    ports:
+      - "2222:22"
+
+  # Mock Smart Thermostat (MQTT)
+  thermostat:
+    image: eclipse-mosquitto
+    container_name: str_thermostat_nest
+    mac_address: "18:B4:30:12:34:56"  # 18:B4:30 = official Nest Labs OUI
+    networks:
+      str_simulation_net:
+        ipv4_address: 172.20.0.30
+    ports:
+      - "1883:1883"
+
+  # THE SENTINEL APP (The Scanner Container)
+  sentinel:
+    build: ../app        # Tells Docker to look in the app/ folder for the Dockerfile
+    container_name: str_sentinel_app
+    networks:
+      str_simulation_net:
+        ipv4_address: 172.20.0.50
+    volumes:
+      - ../app:/app      # Syncs code so I can edit main.py without rebuilding
+    cap_add:
+      - NET_ADMIN        # Essential for scanner to "sniff" the network
+    depends_on:
+      - camera
+      - smart_lock
+      - thermostat

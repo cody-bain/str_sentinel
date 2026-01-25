@@ -1,0 +1,8 @@
+certifi==2026.1.4
+charset-normalizer==3.4.4
+idna==3.11
+nvdlib==0.8.3
+requests==2.32.5
+scapy==2.7.0
+python-nmap
+urllib3==2.6.3
