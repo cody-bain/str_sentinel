@@ -9,7 +9,7 @@ import json
 def run_discovery(target, output=None):
 
     '''
-    Function designed to run ARP Passive Discovery Scan on Local STR Network.
+    Function designed to run ARP Passive Scan on Local STR Network.
     '''
 
     nm = nmap.PortScanner()

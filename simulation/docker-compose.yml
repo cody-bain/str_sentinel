@@ -7,7 +7,7 @@ networks:
         - subnet: 172.20.0.0/24
 
 services:
-  # Mock Hikvision Camera
+  # Hikvision Camera (HTTP)
   camera:
     image: nginx:alpine
     container_name: str_camera_hikvision
@@ -19,7 +19,7 @@ services:
       - "8081:80"
     command: /bin/sh -c "echo '<html><head><title>Hikvision-Web-Login</title></head><body><h1>Login</h1></body></html>' > /usr/share/nginx/html/index.html && nginx -g 'daemon off;'"
 
-  # Mock Smart Lock with vulnerable SSH
+  # Smart Lock (SSH)
   smart_lock:
     platform: linux/amd64
     image: rastasheep/ubuntu-sshd
@@ -33,16 +33,18 @@ services:
     ports:
       - "2222:22"
 
-  # Mock Smart Thermostat (MQTT)
+  # Smart Thermostat (mDNS)
   thermostat:
-    image: eclipse-mosquitto
-    container_name: str_thermostat_nest
+    image: flungo/avahi
+    container_name: str_nest_mdns
     mac_address: "18:B4:30:12:34:56"  # 18:B4:30 = official Nest Labs OUI
     networks:
       str_simulation_net:
-        ipv4_address: 172.20.0.30
-    ports:
-      - "1883:1883"
+        ipv4_address: 172.20.0.35
+    volumes:
+      - ./nest.service:/etc/avahi/services/nest.service:ro
+    environment:
+      - REFLECTOR_ENABLE_REFLECTOR=yes
 
   # THE SENTINEL APP (The Scanner Container)
   sentinel:

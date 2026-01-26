@@ -27,6 +27,11 @@ docker exec -it str_sentinel_app bash
 
 ## Work Log
 
+**Monday, 1/26/26**
+
+- Begin Active Fingerprinting Research
+- Implemented mDNS responders that utilize standard **TXT Record keys (md, ve)** utilized by Google Nest hardware. Allows the Sentinel's Discover engine to be tested against standard broadcast signatures.
+
 **Saturday, 01/24/26**
 - Cleanup *main.py*
 - Finalize Progress Report 01
