@@ -18,4 +18,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Run the scanner
-CMD ["python", "main.py", "--subnet", "172.20.0.0/24", "--log", "discovery.log", "--output", "shared/discovery-scan.json"]
+CMD ["python", "main.py", "--subnet", "172.20.0.0/24", "--log", "shared/discovery.log", "--output", "shared/discovery-scan.json"]

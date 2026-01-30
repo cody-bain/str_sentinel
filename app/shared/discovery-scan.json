@@ -3,30 +3,46 @@
     "ip": "172.20.0.1",
     "status": "up",
     "hostname": null,
-    "mac": "46:4B:16:CB:2A:F8"
+    "mac": "22:2B:31:03:23:8B",
+    "identity": null
   },
   {
     "ip": "172.20.0.10",
     "status": "up",
     "hostname": null,
-    "mac": "00:40:8C:11:22:33"
+    "mac": "00:40:8C:11:22:33",
+    "identity": null
   },
   {
     "ip": "172.20.0.20",
     "status": "up",
     "hostname": null,
-    "mac": "00:17:7A:AA:BB:CC"
+    "mac": "00:17:7A:AA:BB:CC",
+    "identity": null
   },
   {
     "ip": "172.20.0.35",
     "status": "up",
     "hostname": null,
-    "mac": "18:B4:30:12:34:56"
+    "mac": "18:B4:30:12:34:56",
+    "identity": {
+      "mdns_name": "Nest Learning Thermostat._googlecast._tcp.local.",
+      "service_type": "_googlecast._tcp.local.",
+      "model": "Nest Learning Thermostat",
+      "version": "3.0",
+      "id": "Unknown",
+      "all_properties": {
+        "md": "Nest Learning Thermostat",
+        "ve": "3.0"
+      }
+    },
+    "cpe_suggestion": "cpe:2.3:h:google:nest_learning_thermostat:*:*:*:*:*:*:*"
   },
   {
     "ip": "172.20.0.50",
     "status": "up",
     "hostname": null,
-    "mac": null
+    "mac": null,
+    "identity": null
   }
 ]

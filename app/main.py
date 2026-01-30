@@ -4,37 +4,65 @@ import argparse
 import os
 import logging
 import json
-
+# Protocol Handlers
+from protocol_handlers.mdns_handler import run_mdns_scan
 
 def run_discovery(target, output=None):
 
     '''
-    Function designed to run ARP Passive Scan on Local STR Network.
+    Function designed to run ARP Passive Scan on Local STR Network,
+    followed by Active mDNS Identification.
     '''
 
     nm = nmap.PortScanner()
     logging.info(f"--- STR Sentinel Starting Discovery on {target} ---")
+    
     try:
-        # Host Discovery Scan
+        # --- PHASE 1: HOST DISCOVERY (NMAP) ---
+        logging.info("[Phase 1] Running Nmap Host Discovery...")
         nm.scan(hosts=target, arguments='-sn')
         hosts_list = []
 
-        ## Add host infomration to hosts_list
+        # Parse Nmap Results
         for x in nm.all_hosts():
             host_info = {
                 "ip": x,
                 "status": nm[x]['status']['state'],
                 "hostname": nm[x].hostname() if 'hostname' in nm[x] else None,
-                "mac": nm[x]['addresses'].get('mac') if 'addresses' in nm[x] and 'mac' in nm[x]['addresses'] else None
+                "mac": nm[x]['addresses'].get('mac') if 'addresses' in nm[x] and 'mac' in nm[x]['addresses'] else None,
+                "identity": None # Placeholder for high-fidelity data
             }
-
             hosts_list.append(host_info)
-            logging.info(f"Device Found! IP: {host_info['ip']} | Status: {host_info['status']} | Hostname: {host_info['hostname']} | MAC: {host_info['mac']}")
+            logging.info(f"Device Found! IP: {host_info['ip']} | MAC: {host_info['mac']}")
 
         if not hosts_list:
             logging.warning("No hosts found. Check your network settings!")
 
-        # Dump hosts_list json to specified output file
+        # --- PHASE 2: PROTOCOL IDENTIFICATION (mDNS) ---
+        # Only run if we hosts are found to correlate with
+        if hosts_list:
+            logging.info("[Phase 2] Listening for mDNS Identities...")
+            
+            # Run mDNS listener for 5 seconds
+            mdns_data = run_mdns_scan(scan_duration=5)
+            
+            # MERGE LOGIC: Match mDNS results to Nmap results by IP
+            for host in hosts_list:
+                ip = host['ip']
+                if ip in mdns_data:
+                    # Enrich host record with specific model info
+                    host['identity'] = mdns_data[ip]
+                    
+                    # Generate preliminary CPE (will need fuzzing for NVD API usage?)
+                    model = host['identity'].get('model', 'unknown').lower().replace(" ", "_")
+                    host['cpe_suggestion'] = f"cpe:2.3:h:google:{model}:*:*:*:*:*:*:*"
+                    
+                    logging.info(f"--> Identity Confirmed for {ip}: {host['identity']['model']}")
+        # --- PHASE 3: PROTOCOL IDENTIFICATION (HTTP) ---
+
+        # --- PHASE 4: PROTOCOL IDENTIFICATION (SSH) ---
+
+        # --- PHASE 5: REPORTING (NEEDS DEVELOPMENT) ---
         if output:
             with open(output, 'w') as f:
                 json.dump(hosts_list, f, indent=2)

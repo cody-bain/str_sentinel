@@ -1,8 +1,0 @@
-2026-01-26 19:50:43,303 INFO: --- STR Sentinel Starting Discovery on 172.20.0.0/24 ---
-2026-01-26 19:50:45,271 INFO: Device Found! IP: 172.20.0.1 | Status: up | Hostname: None | MAC: 46:4B:16:CB:2A:F8
-2026-01-26 19:50:45,271 INFO: Device Found! IP: 172.20.0.10 | Status: up | Hostname: None | MAC: 00:40:8C:11:22:33
-2026-01-26 19:50:45,271 INFO: Device Found! IP: 172.20.0.20 | Status: up | Hostname: None | MAC: 00:17:7A:AA:BB:CC
-2026-01-26 19:50:45,272 INFO: Device Found! IP: 172.20.0.35 | Status: up | Hostname: None | MAC: 18:B4:30:12:34:56
-2026-01-26 19:50:45,272 INFO: Device Found! IP: 172.20.0.50 | Status: up | Hostname: None | MAC: None
-2026-01-26 19:50:45,273 INFO: Results written to shared/discovery-scan.json
-2026-01-26 19:50:45,273 INFO: --- Discovery Complete ---
