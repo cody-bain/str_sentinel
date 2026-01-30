@@ -2,7 +2,7 @@
 
 **Cody Bain | Georgia Tech PUBP 6727**
 
-> An automated IoT security scanner for short-term rental (STR) properties that discovers network devices, identifies vulnerabilities, and generates actionable security reports.
+> An automated IoT security scanner for short-term rental (STR) properties that discovers network devices, identifies vulnerabilities, and generates actionable security reports for hosts and guests.
 
 ## 🎯 Project Overview
 
@@ -54,7 +54,14 @@ The testing environment includes three simulated IoT devices:
 Access the Sentinel container and run a scan:
 
 ```bash
-docker exec -it str_sentinel_app python main.py --target 172.20.0.0/24
+# Run with default subnet (172.20.0.0/24)
+docker exec -it str_sentinel_app python main.py
+
+# Or specify a custom subnet
+docker exec -it str_sentinel_app python main.py --subnet 192.168.1.0/24
+
+# With optional output file
+docker exec -it str_sentinel_app python main.py --output custom-scan.json
 ```
 
 Results are saved to `app/shared/discovery-scan.json`

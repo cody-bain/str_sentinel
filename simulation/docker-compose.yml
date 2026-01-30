@@ -50,6 +50,7 @@ services:
   sentinel:
     build: ../app        # Tells Docker to look in the app/ folder for the Dockerfile
     container_name: str_sentinel_app
+    command: tail -f /dev/null  # Keeps container running for interactive use
     networks:
       str_simulation_net:
         ipv4_address: 172.20.0.50
