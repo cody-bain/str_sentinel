@@ -2,17 +2,20 @@
 
 **Cody Bain | Georgia Tech PUBP 6727**
 
-> An automated IoT security scanner for short-term rental (STR) properties that discovers network devices, identifies vulnerabilities, and generates actionable security reports for hosts and guests.
+An automated IoT security scanner for short-term rental (STR) properties that discovers network devices, identifies vulnerabilities, and generates actionable security reports.
 
-## 🎯 Project Overview
+---
 
-STR Sentinel performs automated security assessments of IoT devices in rental properties by:
+## Project Overview
+
+STR Sentinel performs automated security assessments of IoT devices in rental properties through a four-phase approach:
+
 1. **Discovery** - Identifies all devices on the local network using nmap
-2. **Fingerprinting** - Identifies device models and versions via mDNS, HTTP, SSH
+2. **Fingerprinting** - Identifies device models and versions via mDNS, HTTP, and SSH protocols
 3. **Vulnerability Analysis** - Matches devices against NIST NVD for known CVEs
 4. **Reporting** - Generates security assessment reports with remediation guidance
 
-## 🏗️ Architecture
+### System Architecture
 
 ```
 ┌─────────────────────────────────────────────────────┐
@@ -25,13 +28,15 @@ STR Sentinel performs automated security assessments of IoT devices in rental pr
 └─────────────────────────────────────────────────────┘
 ```
 
-## 🚀 Quick Start
+---
+
+## Getting Started
 
 ### Prerequisites
 - Docker & Docker Compose
 - Python 3.11+ (for local development)
 
-### Running the Simulation
+### Running the Simulation Environment
 
 Start all services (IoT device simulations + Sentinel scanner):
 
@@ -41,7 +46,7 @@ docker-compose -f simulation/docker-compose.yml up -d --build
 
 ### Simulated Network Environment
 
-The testing environment includes three simulated IoT devices:
+The testing environment includes three simulated IoT devices on an isolated Docker network (172.20.0.0/24):
 
 | Device Type | IP Address | Protocols | MAC Address (OUI) |
 |------------|------------|-----------|-------------------|
@@ -51,22 +56,24 @@ The testing environment includes three simulated IoT devices:
 
 ### Running a Discovery Scan
 
-Access the Sentinel container and run a scan:
+Execute a network scan from the Sentinel container:
 
 ```bash
 # Run with default subnet (172.20.0.0/24)
 docker exec -it str_sentinel_app python main.py
 
-# Or specify a custom subnet
+# Specify a custom subnet
 docker exec -it str_sentinel_app python main.py --subnet 192.168.1.0/24
 
 # With optional output file
 docker exec -it str_sentinel_app python main.py --output custom-scan.json
 ```
 
-Results are saved to `app/shared/discovery-scan.json`
+Scan results are saved to `app/shared/discovery-scan.json`
 
-## 📂 Project Structure
+---
+
+## Project Structure
 
 ```
 str_sentinel/
@@ -83,42 +90,25 @@ str_sentinel/
 └── README.md
 ```
 
-## 🔧 Development Setup
+---
 
-### Local Development (Without Docker)
+## Implementation Status
 
-1. Create and activate a virtual environment:
-```bash
-python3 -m venv .venv
-source .venv/bin/activate  # On macOS/Linux
-```
-
-2. Install dependencies:
-```bash
-pip install -r app/requirements.txt
-```
-
-3. Configure Python interpreter in VS Code:
-   - `Cmd+Shift+P` → "Python: Select Interpreter"
-   - Select `.venv/bin/python`
-
-## 📊 Current Status
-
-**Phase 1 (Discovery):** ✅ Complete
+### Phase 1: Network Discovery - COMPLETE
 - Nmap host discovery operational
 - MAC address and IP detection working
 
-**Phase 2 (Fingerprinting):** 🚧 In Progress
-- ✅ mDNS handler complete (Google Cast/Nest detection)
-- ⏳ HTTP handler (planned)
-- ⏳ SSH banner grabbing (planned)
+### Phase 2: Protocol Fingerprinting - IN PROGRESS
+- mDNS handler complete (Google Cast/Nest detection)
+- HTTP handler (planned)
+- SSH banner grabbing (planned)
 
-**Phase 3 (Vulnerability Analysis):** ⏳ Planned
+### Phase 3: Vulnerability Analysis - PLANNED
 - CPE string generation
 - NVD API integration
 - CVE matching
 
-**Phase 4 (Reporting):** ⏳ Planned
+### Phase 4: Reporting - PLANNED
 - Web dashboard
 - PDF report generation
 
@@ -126,7 +116,7 @@ pip install -r app/requirements.txt
 
 ---
 
-## 🛠️ Work Log
+## Work Log
 
 ### Week of January 26 - February 1, 2026
 
@@ -169,40 +159,36 @@ pip install -r app/requirements.txt
 
 ---
 
-## 🎯 Future Work
+## Planned Development
 
 ### Immediate Priorities
-- [ ] **HTTP Fingerprinting Handler** - Identify devices via web interfaces, headers, banners
-- [ ] **SSH Banner Grabbing** - Extract device information from SSH handshakes
-- [ ] **Enhanced CPE Matching** - Integrate MAC OUI lookups for better vendor identification
+- HTTP Fingerprinting Handler - Identify devices via web interfaces, headers, banners
+- SSH Banner Grabbing - Extract device information from SSH handshakes
+- Enhanced CPE Matching - Integrate MAC OUI lookups for better vendor identification
 
 ### Phase 3: Vulnerability Analysis
-- [ ] Build CPE matching engine using NIST NVD API
-- [ ] Implement CVE lookup for hardware devices
-- [ ] Implement CVE lookup for software/firmware versions
-- [ ] Risk scoring algorithm based on CVSS scores
+- Build CPE matching engine using NIST NVD API
+- Implement CVE lookup for hardware devices
+- Implement CVE lookup for software/firmware versions
+- Risk scoring algorithm based on CVSS scores
 
 ### Phase 4: Reporting & Dashboard
-- [ ] Web-based dashboard for scan results visualization
-- [ ] PDF report generation with executive summary
-- [ ] Network topology visualization
-- [ ] Remediation recommendations engine
+- Web-based dashboard for scan results visualization
+- PDF report generation with executive summary
+- Network topology visualization
+- Remediation recommendations engine
 
 ### Research & Enhancement
-- [ ] Generic protocol defense scripts (brand-agnostic testing)
+- Generic protocol defense scripts (brand-agnostic testing)
   - Example: MQTT security assessment applicable to any MQTT-enabled device
-- [ ] Expand device signature database
-- [ ] ARP spoofing detection/mitigation research
+- Expand device signature database
+- ARP spoofing detection/mitigation research
   - Relevant for local network operation where ICMP blocking is ineffective
 
 ---
 
-## 📚 Technical Notes
+## Technical Notes
 
-**mDNS Protocol Coverage:** Not all IoT devices use mDNS. Discovery strategy employs a two-phase approach:
-1. **Nmap** finds all devices (passive/active scanning)
-2. **Protocol handlers** add identity data for devices that advertise
+**mDNS Protocol Coverage:** Not all IoT devices use mDNS. Discovery strategy employs a two-phase approach where nmap finds all devices (passive/active scanning) and protocol handlers add identity data for devices that advertise.
 
-**Security Considerations:** 
-- Simulation operates on isolated Docker network
-- Potential attack vectors being considered: ARP spoofing on local STR networks
+**Security Considerations:** Simulation operates on isolated Docker network. Potential attack vectors being considered include ARP spoofing on local STR networks.
