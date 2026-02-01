@@ -11,6 +11,10 @@ class MDNSCollector:
     def remove_service(self, zeroconf, type, name):
         pass
     
+    # Do nothing when a device updates its information
+    def update_service(self, zeroconf, type, name):
+        pass
+    
     # Function automatically called when a device broadcasts on network
     def add_service(self, zeroconf, type, name):
         try:
@@ -30,12 +34,19 @@ class MDNSCollector:
                 logging.debug(f"[mDNS] Properties for {ip}: {properties}")
 
                 # Store the identity in dictionary. Try multiple common device property keys
+                model = properties.get('md') or properties.get('model') or properties.get('product') or 'Unknown'
+                
+                # Extract vendor from model (e.g., "Nest Learning Thermostat" -> "Nest")
+                vendor = model.split()[0] if model != 'Unknown' else 'Unknown'
+                
                 self.found_devices[ip] = {
                     "mdns_name": name,
                     "service_type": type,
-                    "model": properties.get('md') or properties.get('model') or properties.get('product') or 'Unknown',
+                    "vendor": vendor,
+                    "model": model,
                     "version": properties.get('ve') or properties.get('version') or properties.get('sw') or 'Unknown',
                     "id": properties.get('id') or properties.get('deviceid') or properties.get('uuid') or 'Unknown',
+                    "detection_method": "mDNS",
                     "all_properties": properties if properties else None  # Include all properties for analysis
                 }
 

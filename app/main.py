@@ -6,6 +6,7 @@ import logging
 import json
 # Protocol Handlers
 from protocol_handlers.mdns_handler import run_mdns_scan
+from protocol_handlers.http_handler import run_http_scan
 
 def run_discovery(target, output=None):
 
@@ -53,12 +54,41 @@ def run_discovery(target, output=None):
                     # Enrich host record with specific model info
                     host['identity'] = mdns_data[ip]
                     
-                    # Generate preliminary CPE (will need fuzzing for NVD API usage?)
+                    # Generate preliminary CPE
+                    vendor = host['identity'].get('vendor', 'unknown').lower().replace(" ", "_")
                     model = host['identity'].get('model', 'unknown').lower().replace(" ", "_")
-                    host['cpe_suggestion'] = f"cpe:2.3:h:google:{model}:*:*:*:*:*:*:*"
+                    host['cpe_suggestion'] = f"cpe:2.3:h:{vendor}:{model}:*:*:*:*:*:*:*"
                     
-                    logging.info(f"--> Identity Confirmed for {ip}: {host['identity']['model']}")
+                    logging.info(f"--> Identity Confirmed for {ip}: {host['identity']['vendor']} {host['identity']['model']}")
+        
         # --- PHASE 3: PROTOCOL IDENTIFICATION (HTTP) ---
+        # Probe devices for HTTP services on common ports
+        if hosts_list:
+            logging.info("[Phase 3] Probing HTTP Services...")
+            
+            # Extract IPs from hosts_list
+            ip_list = [host['ip'] for host in hosts_list]
+            
+            # Run HTTP fingerprinting
+            http_data = run_http_scan(ip_list, ports=[80, 8080, 8081])
+            
+            # MERGE LOGIC: Match HTTP results to Nmap results by IP
+            for host in hosts_list:
+                ip = host['ip']
+                if ip in http_data:
+                    # If identity doesn't exist yet, create it; otherwise merge
+                    if not host['identity']:
+                        host['identity'] = http_data[ip]
+                        
+                        # Generate preliminary CPE
+                        vendor = host['identity'].get('vendor', 'unknown').lower().replace(" ", "_")
+                        model = host['identity'].get('model', 'unknown').lower().replace(" ", "_").replace("-", "_")
+                        host['cpe_suggestion'] = f"cpe:2.3:h:{vendor}:{model}:*:*:*:*:*:*:*"
+                        
+                        logging.info(f"--> Identity Confirmed for {ip}: {host['identity']['vendor']} {host['identity']['model']}")
+                    else:
+                        # Merge HTTP data with existing identity
+                        host['identity'].update(http_data[ip])
 
         # --- PHASE 4: PROTOCOL IDENTIFICATION (SSH) ---
 
