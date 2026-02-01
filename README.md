@@ -1,4 +1,4 @@
-# STR Sentinel
+# STR Sentinel (In Development)
 
 **Cody Bain | Georgia Tech PUBP 6727**
 
