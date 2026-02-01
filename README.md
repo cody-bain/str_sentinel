@@ -220,9 +220,9 @@ Example: `Server: nginx, Hikvision-Webs` → Correctly identifies as **Hikvision
 ## Technical Challenges & Solutions
 
 ### Challenge 1: HTTP Fingerprinting Accuracy
-**Problem:** Generic nmap service detection only identified "nginx 1.29.4" - missing the actual Hikvision camera identity.
+**Problem:** Generic nmap service detection only identified "nginx 1.29.4" while missing the actual Hikvision camera identity.
 
-**Solution:** Integrated Rapid7's Recog framework with 680+ professional fingerprint patterns. Rather than building a custom XML parser (267 lines), used Ruby subprocess calls to native `recog_match` command (~30 lines). Smart header parsing prioritizes device-specific patterns over generic web servers.
+**Solution:** Integrated Rapid7's Recog framework with 680+ professional fingerprint patterns. Used Ruby subprocess calls to native `recog_match` command. Smart header parsing prioritizes device-specific patterns over generic web servers.
 
 ### Challenge 2: Multi-Value HTTP Headers
 **Problem:** Simulation sent `Server: nginx, Hikvision-Webs` but Recog matched only the first value (nginx), missing the IoT device.
@@ -230,40 +230,30 @@ Example: `Server: nginx, Hikvision-Webs` → Correctly identifies as **Hikvision
 **Solution:** Implemented comma-separated header parsing with priority logic:
 1. Try full header string first
 2. If match is generic (nginx, Apache), parse each comma-separated value
-3. Return first non-generic match (Hikvision Web Server)
+3. Return first non-generic match (ex. Hikvision Web Server)
 
-### Challenge 3: mDNS Service Loading Failure
-**Problem:** Avahi daemon failed to load nest.service with error "XML_ParseBuffer() failed at line 5"
-
-**Solution:** XML declaration must be on line 1 per specification. Moved `<?xml version="1.0"?>` before all comments. Avahi now successfully broadcasts Nest thermostat via Google Cast protocol.
-
-### Challenge 4: Simulation vs Real-World Behavior
+### Challenge 3: Simulation vs Real-World Behavior
 **Problem:** Initial simulation used custom `X-Hikvision-Model` header that real devices don't send. This created detection that only worked in curated environments.
 
 **Solution:** Research into actual Hikvision device behavior revealed they send `Server: Hikvision-Webs` (already in Recog database). Updated simulation to use authentic headers, enabling detection via industry-standard patterns rather than custom workarounds.
-
-### Challenge 5: Python vs Ruby Ecosystem
-**Problem:** Recog is Ruby-native with 680+ XML patterns. Choices were: (a) write Python XML parser from scratch, (b) find unmaintained Python port, or (c) integrate Ruby.
-
-**Solution:** Installed Ruby + recog gem in Docker container and called via subprocess. More maintainable than custom parser, uses official patterns, stays up-to-date with Recog releases.
 
 ---
 
 ## Planned Development
 
 ### Immediate Priorities
-- SSH banner grabbing handler - Extract device information from SSH handshakes (Yale lock identification)
-- Enhanced CPE matching - Integrate MAC OUI lookups for better vendor identification
+- SSH banner grabbing handler. Extract device information from SSH handshakes (ex. Yale lock identification)
+- Enhanced CPE matching. Integrate MAC OUI lookups for better vendor identification
 
 ### Phase 3: Vulnerability Analysis
-- NVD API integration using nvdlib (already in requirements.txt)
+- NVD API integration using nvdlib
 - CPE-to-CVE matching engine
 - CVSS-based risk scoring algorithm
 - Vulnerability report generation
 
 ### Phase 4: Reporting & Dashboard
 - Web-based dashboard for scan results visualization
-- PDF report generation with executive summary
+- PDF report generation with executive summary for both guests and hosts
 - Network topology visualization
 - Remediation recommendations engine
 
@@ -274,14 +264,8 @@ Example: `Server: nginx, Hikvision-Webs` → Correctly identifies as **Hikvision
 
 ---
 
-## Technical Notes
+## Other Technical Notes
 
 **Multi-Protocol Strategy:** Not all IoT devices use mDNS. Discovery employs a layered approach where nmap finds all hosts (passive ARP scanning) and protocol handlers enrich with identity data for devices that advertise via HTTP, mDNS, or SSH.
-
-**Recog Integration Benefits:**
-- **Professional Patterns:** Maintained by Rapid7's security research team
-- **Coverage:** 680+ fingerprints across web servers, IoT devices, embedded systems
-- **Updates:** Gem updates bring new patterns automatically
-- **Authenticity:** Uses same tool employed by Metasploit and nexpose scanners
 
 **Simulation Realism:** Environment uses vendor-specific MAC OUIs (00:40:8C for Hikvision, 18:B4:30 for Nest Labs, 00:17:7A for Yale) and authentic protocol behaviors to ensure detection methods work on real hardware, not just in test environments.
