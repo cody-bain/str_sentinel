@@ -3,6 +3,8 @@ import socket
 import time
 import logging
 
+# File developed with assistance from generative AI tools. All AI-generated content was reviewed, revised, and adapted to meet STR Sentinel requirements.
+
 class MDNSCollector:
     def __init__(self):
         self.found_devices = {}

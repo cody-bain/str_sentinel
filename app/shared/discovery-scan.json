@@ -3,7 +3,7 @@
     "ip": "172.20.0.1",
     "status": "up",
     "hostname": null,
-    "mac": "22:2B:31:03:23:8B",
+    "mac": "DA:10:29:54:3C:75",
     "identity": {
       "vendor": "Hikvision",
       "model": "Hikvision Web Server",
@@ -13,7 +13,7 @@
       "http_title": "Hikvision DS-2CD2042WD-I Network Camera",
       "http_server": "nginx, Hikvision-Webs"
     },
-    "cpe_suggestion": "cpe:2.3:h:hikvision:hikvision_web_server:*:*:*:*:*:*:*"
+    "cpe_suggestion": "cpe:2.3:h:hikvision:ds_2cd2042wd_i:*:*:*:*:*:*:*:*"
   },
   {
     "ip": "172.20.0.10",
@@ -29,14 +29,21 @@
       "http_title": "Hikvision DS-2CD2042WD-I Network Camera",
       "http_server": "nginx, Hikvision-Webs"
     },
-    "cpe_suggestion": "cpe:2.3:h:hikvision:hikvision_web_server:*:*:*:*:*:*:*"
+    "cpe_suggestion": "cpe:2.3:h:hikvision:ds_2cd2042wd_i:*:*:*:*:*:*:*:*"
   },
   {
     "ip": "172.20.0.20",
     "status": "up",
     "hostname": null,
-    "mac": "00:17:7A:AA:BB:CC",
-    "identity": null
+    "mac": "00:1E:14:AA:BB:CC",
+    "identity": {
+      "vendor": "OpenBSD",
+      "model": "OpenSSH",
+      "version": "7.6p1",
+      "detection_method": "SSH",
+      "ssh_banner": "SSH-2.0-OpenSSH_7.6p1 Ubuntu-4"
+    },
+    "cpe_suggestion": "cpe:2.3:a:openbsd:openssh:7.6:p1:*:*:*:*:*:*:*"
   },
   {
     "ip": "172.20.0.35",
@@ -56,7 +63,7 @@
         "ve": "3.0"
       }
     },
-    "cpe_suggestion": "cpe:2.3:h:nest:nest_learning_thermostat:*:*:*:*:*:*:*"
+    "cpe_suggestion": "cpe:2.3:h:nest:nest_learning_thermostat:3.0:*:*:*:*:*:*:*"
   },
   {
     "ip": "172.20.0.50",

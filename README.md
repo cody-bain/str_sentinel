@@ -50,8 +50,8 @@ The testing environment includes three simulated IoT devices on an isolated Dock
 
 | Device Type | IP Address | Protocols | MAC Address (OUI) |
 |------------|------------|-----------|-------------------|
-| Hikvision Camera | 172.20.0.10 | HTTP (8081) | 00:40:8C (Hikvision) |
-| Yale Smart Lock | 172.20.0.20 | SSH (2222) | 00:17:7A (Yale) |
+| Hikvision Camera | 172.20.0.10 | HTTP (80) | 00:40:8C (Hikvision) |
+| Network Device (OpenSSH) | 172.20.0.20 | SSH (22) | 00:1E:14 (Cisco Systems) |
 | Nest Thermostat | 172.20.0.35 | mDNS (Google Cast) | 18:B4:30 (Nest Labs) |
 
 ### Running a Discovery Scan
@@ -60,7 +60,7 @@ Execute a network scan from the Sentinel container:
 
 ```bash
 # Run with default docker subnet (172.20.0.0/24), output file, and log file
-docker exec -it str_sentinel_app python main.py --output shared/discovery-scan.json
+docker exec -it str_sentinel_app python main.py --output shared/discovery-scan.json 
 
 # Specify a custom subnet
 docker exec -it str_sentinel_app python main.py --subnet 192.168.1.0/24
@@ -81,7 +81,8 @@ str_sentinel/
 │   ├── main.py                    # Primary discovery orchestrator
 │   ├── protocol_handlers/
 │   │   ├── mdns_handler.py        # mDNS device identification
-│   │   └── http_handler.py        # HTTP fingerprinting via Recog
+│   │   ├── http_handler.py        # HTTP fingerprinting via Recog
+│   │   └── ssh_handler.py         # SSH banner fingerprinting via Recog
 │   ├── shared/
 │   │   └── discovery-scan.json    # Scan results output
 │   ├── requirements.txt
@@ -107,10 +108,19 @@ str_sentinel/
   - 680+ professional-grade fingerprint patterns
   - Detects web servers, IoT devices, embedded systems
   - Intelligent priority: specific device patterns before generic servers
-- SSH banner grabbing (in progress)
+- ✅ SSH handler complete (Banner fingerprinting via Recog)
+  - 152 SSH server patterns for device identification
+  - Protocol prefix stripping before pattern matching
+  - Version extraction with CPE formatting
 
 ### Phase 3: Vulnerability Analysis - IN PROGRESS
-- CPE string generation implemented
+- NVD-compatible CPE generation (In Progress)
+  - Model extraction from HTTP titles (DS-2CD2042WD-I from Hikvision)
+  - Version formatting for CPE 
+  - Smart application vs hardware detection
+- CPE-Fuzzing (planned)
+  - To more consistently ensure a match
+
 - NVD API integration (planned)
 - CVE matching (planned)
 
@@ -140,7 +150,7 @@ STR Sentinel uses a **hybrid detection approach** combining multiple protocols t
 │ Phase 2: Protocol Fingerprinting (Parallel)             │
 │  ├─> mDNS: Zeroconf service browser (TXT records)       │
 │  ├─> HTTP: Recog gem (Server headers, WWW-Auth)         │
-│  └─> SSH: Banner grabbing (planned)                     │
+│  └─> SSH: Banner grabbing + Recog gem                   │
 └──────────────────────────────────────────────────────────┘
                       ↓
 ┌──────────────────────────────────────────────────────────┐
@@ -158,11 +168,31 @@ Rather than writing custom regex patterns, STR Sentinel leverages **Rapid7's Rec
 - **XML Databases:** Uses official Recog gem installation (http_servers.xml, http_wwwauth.xml, ssh_banners.xml)
 - **Smart Parsing:** Handles comma-separated Server headers, prioritizes specific devices over generic servers
 
-Example: `Server: nginx, Hikvision-Webs` → Correctly identifies as **Hikvision DVR** (not nginx)
-
 ---
 
 ## Work Log
+
+### Week of February 2 - February 8, 2026
+
+**Tuesday, 2/3/26**
+
+- **Enhanced CPE Generation Enhanced:**
+  - Fixed model extraction from HTTP titles (DS-2CD2042WD-I from Hikvision web interface)
+  - Version formatting for CPE spec: `7.6p1` → `7.6:p1` (patch level requires colon)
+  - Smart CPE type detection:
+    - SSH-detected services → Application (`a`)
+    - Generic software (nginx, Apache) → Application (`a`)
+    - Device-specific models → Hardware (`h`)
+- **Simulation Updates:**
+  - Changed device from Yale lock to generic OpenSSH router/gateway
+
+**Monday, 2/2/26**
+
+- Built `ssh_handler.py` using Recog's 152 SSH banner patterns
+- Socket-based banner extraction (port 22)
+- Protocol prefix stripping: `SSH-2.0-OpenSSH_7.6p1` → `OpenSSH_7.6p1` for Recog matching
+- Returns vendor (OpenBSD), model (OpenSSH), version (7.6p1) from single banner string
+- Integrated into main.py
 
 ### Week of January 26 - February 1, 2026
 
@@ -232,7 +262,21 @@ Example: `Server: nginx, Hikvision-Webs` → Correctly identifies as **Hikvision
 2. If match is generic (nginx, Apache), parse each comma-separated value
 3. Return first non-generic match (ex. Hikvision Web Server)
 
-### Challenge 3: Simulation vs Real-World Behavior
+### Challenge 3: CPE Type Classification
+**Problem:** Initial logic hardcoded `['OpenSSH', 'SSH']` to determine application vs hardware, failing for other SSH servers or generic web servers detected via HTTP.
+
+**Solution:** Refactored to use detection_method field and software indicators list. SSH detection → always application. Generic software (nginx, Apache) → application even via HTTP. Device-specific models → hardware. Scales to any future protocol.
+
+### Challenge 4: NVD-Compatible CPE Strings
+**Problem:** Generated CPEs like `cpe:2.3:h:hikvision:hikvision_web_server:*` contained no model/version info, preventing NVD CVE lookups.
+
+**Solution:** Enhanced CPE generator to:
+- Extract actual model numbers from HTTP titles via regex (`DS-2CD2042WD-I`)
+- Include detected versions (not wildcards) when available
+- Format patch levels per CPE spec (`7.6p1` → `7.6:p1`)
+Result: Real CPEs like `cpe:2.3:a:openbsd:openssh:7.6:p1:*:*:*:*:*:*:*` ready for NVD queries.
+
+### Challenge 5: Simulation vs Real-World Behavior
 **Problem:** Initial simulation used custom `X-Hikvision-Model` header that real devices don't send. This created detection that only worked in curated environments.
 
 **Solution:** Research into actual Hikvision device behavior revealed they send `Server: Hikvision-Webs` (already in Recog database). Updated simulation to use authentic headers, enabling detection via industry-standard patterns rather than custom workarounds.
@@ -242,8 +286,7 @@ Example: `Server: nginx, Hikvision-Webs` → Correctly identifies as **Hikvision
 ## Planned Development
 
 ### Immediate Priorities
-- SSH banner grabbing handler. Extract device information from SSH handshakes (ex. Yale lock identification)
-- Enhanced CPE matching. Integrate MAC OUI lookups for better vendor identification
+- Enhance CPE matching. Potentially use fuzzing to improve match rate with NIST NVD API.
 
 ### Phase 3: Vulnerability Analysis
 - NVD API integration using nvdlib
@@ -258,9 +301,7 @@ Example: `Server: nginx, Hikvision-Webs` → Correctly identifies as **Hikvision
 - Remediation recommendations engine
 
 ### Research & Enhancement
-- Generic protocol defense scripts (brand-agnostic MQTT/CoAP testing)
-- Expand SSH fingerprint coverage for more lock manufacturers
-- Investigate UPnP/SSDP discovery for additional device types
+- Expand SSH & HTTP model patterns for more IoT device fingerprinting capability
 
 ---
 
@@ -268,4 +309,4 @@ Example: `Server: nginx, Hikvision-Webs` → Correctly identifies as **Hikvision
 
 **Multi-Protocol Strategy:** Not all IoT devices use mDNS. Discovery employs a layered approach where nmap finds all hosts (passive ARP scanning) and protocol handlers enrich with identity data for devices that advertise via HTTP, mDNS, or SSH.
 
-**Simulation Realism:** Environment uses vendor-specific MAC OUIs (00:40:8C for Hikvision, 18:B4:30 for Nest Labs, 00:17:7A for Yale) and authentic protocol behaviors to ensure detection methods work on real hardware, not just in test environments.
+**Simulation Realism:** Environment uses vendor-specific MAC OUIs (00:40:8C for Hikvision, 18:B4:30 for Nest Labs, 00:1E:14 for Cisco) and authentic protocol behaviors to ensure detection methods work on real hardware, not just in test environments.

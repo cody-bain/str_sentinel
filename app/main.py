@@ -4,9 +4,51 @@ import argparse
 import os
 import logging
 import json
+import re
 # Protocol Handlers
 from protocol_handlers.mdns_handler import run_mdns_scan
 from protocol_handlers.http_handler import run_http_scan
+from protocol_handlers.ssh_handler import run_ssh_scan
+
+# Some code snippets developed with assistance from generative AI tools. All AI-generated content was reviewed, revised, and adapted to meet STR Sentinel requirements.
+
+def generate_cpe(identity):
+    '''
+    Generate NVD-compatible CPE string from device identity.
+    Uses actual version numbers and extracts model numbers from titles when available.
+    '''
+    vendor = identity.get('vendor', 'unknown').lower().replace(" ", "_")
+    version = identity.get('version', '*')
+    
+    # Extract model number from HTTP title if available (ex. "DS-2CD2042WD-I")
+    model = identity.get('model', 'unknown').lower().replace(" ", "_")
+    if 'http_title' in identity:
+        title = identity['http_title']
+        # Match model numbers like DS-2CD2042WD-I, T2500E, etc.
+        model_match = re.search(r'([A-Z]{2,}-[A-Z0-9\-]+|[A-Z]\d{4}[A-Z]?)', title)
+        if model_match:
+            model = model_match.group(1).lower().replace("-", "_")
+    
+    # Format version properly (remove wildcards if I have actual version)
+    if version and version != 'Unknown' and version != '*':
+        # Clean version string (ex. "7.6p1" -> "7.6:p1" for CPE format)
+        version_clean = version.replace("p", ":p") if "p" in version else version
+    else:
+        version_clean = "*"
+    
+    # Determine CPE type based on what was detected:
+    #    SSH always detects applications/services (OpenSSH, Dropbear, etc.)
+    #    Generic web servers (nginx, Apache) are applications even if found via HTTP
+    #    Device-specific models (Hikvision Web Server, Nest) are hardware
+    software_indicators = ['ssh', 'apache', 'nginx', 'iis', 'lighttpd', 'tomcat', 'openssh'] # SCALE THIS!
+    is_software = (
+        identity.get('detection_method') == 'SSH' or
+        identity.get('model', '').lower() in software_indicators
+    )
+    cpe_type = 'a' if is_software else 'h'
+    
+    return f"cpe:2.3:{cpe_type}:{vendor}:{model}:{version_clean}:*:*:*:*:*:*:*"
+
 
 def run_discovery(target, output=None):
 
@@ -54,10 +96,8 @@ def run_discovery(target, output=None):
                     # Enrich host record with specific model info
                     host['identity'] = mdns_data[ip]
                     
-                    # Generate preliminary CPE
-                    vendor = host['identity'].get('vendor', 'unknown').lower().replace(" ", "_")
-                    model = host['identity'].get('model', 'unknown').lower().replace(" ", "_")
-                    host['cpe_suggestion'] = f"cpe:2.3:h:{vendor}:{model}:*:*:*:*:*:*:*"
+                    # Generate CPE using actual version
+                    host['cpe_suggestion'] = generate_cpe(host['identity'])
                     
                     logging.info(f"--> Identity Confirmed for {ip}: {host['identity']['vendor']} {host['identity']['model']}")
         
@@ -80,10 +120,8 @@ def run_discovery(target, output=None):
                     if not host['identity']:
                         host['identity'] = http_data[ip]
                         
-                        # Generate preliminary CPE
-                        vendor = host['identity'].get('vendor', 'unknown').lower().replace(" ", "_")
-                        model = host['identity'].get('model', 'unknown').lower().replace(" ", "_").replace("-", "_")
-                        host['cpe_suggestion'] = f"cpe:2.3:h:{vendor}:{model}:*:*:*:*:*:*:*"
+                        # Generate CPE with model extraction from title
+                        host['cpe_suggestion'] = generate_cpe(host['identity'])
                         
                         logging.info(f"--> Identity Confirmed for {ip}: {host['identity']['vendor']} {host['identity']['model']}")
                     else:
@@ -91,6 +129,31 @@ def run_discovery(target, output=None):
                         host['identity'].update(http_data[ip])
 
         # --- PHASE 4: PROTOCOL IDENTIFICATION (SSH) ---
+        # Probe devices for SSH services on port 22
+        if hosts_list:
+            logging.info("[Phase 4] Probing SSH Services...")
+            
+            # Extract IPs from hosts_list
+            ip_list = [host['ip'] for host in hosts_list]
+            
+            # Run SSH fingerprinting
+            ssh_data = run_ssh_scan(ip_list, port=22)
+            
+            # MERGE LOGIC: Match SSH results to Nmap results by IP
+            for host in hosts_list:
+                ip = host['ip']
+                if ip in ssh_data:
+                    # If identity doesn't exist yet, create it; otherwise merge
+                    if not host['identity']:
+                        host['identity'] = ssh_data[ip]
+                        
+                        # Generate CPE with actual version
+                        host['cpe_suggestion'] = generate_cpe(host['identity'])
+                        
+                        logging.info(f"--> Identity Confirmed for {ip}: {host['identity']['vendor']} {host['identity']['model']}")
+                    else:
+                        # Merge SSH data with existing identity
+                        host['identity'].update(ssh_data[ip])
 
         # --- PHASE 5: REPORTING (NEEDS DEVELOPMENT) ---
         if output:
