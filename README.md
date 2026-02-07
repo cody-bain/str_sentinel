@@ -174,9 +174,19 @@ Rather than writing custom regex patterns, STR Sentinel leverages **Rapid7's Rec
 
 ### Week of February 2 - February 8, 2026
 
-**Tuesday, 2/3/26**
+**Saturday, 2/7/26**
 
-- **Enhanced CPE Generation Enhanced:**
+- **Drafted Progress Report Update #2**
+- **Code Documentation:**
+  - Added AI attribution disclaimers to all Python files (main.py, mdns_handler.py, http_handler.py, ssh_handler.py)
+  - Statement: "Some code snippets developed with assistance from generative AI tools. All AI-generated content was reviewed, revised, and adapted to meet STR Sentinel requirements."
+- **Repository Maintenance:**
+  - Updated .gitignore to exclude course progress report files
+  - Consolidated and committed SSH handler and CPE generation work
+
+**Tuesday, 2/4/26**
+
+- **Enhanced CPE Generation:**
   - Fixed model extraction from HTTP titles (DS-2CD2042WD-I from Hikvision web interface)
   - Version formatting for CPE spec: `7.6p1` → `7.6:p1` (patch level requires colon)
   - Smart CPE type detection:
