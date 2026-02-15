@@ -1,0 +1,1507 @@
+{
+  "test_date": "2026-02-11",
+  "total_devices": 100,
+  "description": "100 IoT devices relevant to short-term rental properties, detectable via HTTP/SSH/mDNS",
+  "devices": [
+    {
+      "ip": "192.168.1.10",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:00",
+      "identity": {
+        "vendor": "Arubanetworks",
+        "model": "vx 5000",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:arubanetworks:vx-5000:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.11",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:01",
+      "identity": {
+        "vendor": "Vizio",
+        "model": "e50x e1",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:vizio:e50x-e1:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.12",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:02",
+      "identity": {
+        "vendor": "Uhp",
+        "model": "uhp 100",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:uhp:uhp-100:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.13",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:03",
+      "identity": {
+        "vendor": "Bushnellgolf",
+        "model": "launch pro",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:bushnellgolf:launch_pro:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.14",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:04",
+      "identity": {
+        "vendor": "Asuswrt Merlin",
+        "model": "rt ac5300",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:asuswrt-merlin:rt-ac5300:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.15",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:05",
+      "identity": {
+        "vendor": "Unified Automation",
+        "model": "uagateway",
+        "version": "1.5.15.500",
+        "detection_method": "SSH"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:a:unified-automation:uagateway:1.5.15.500:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.16",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:06",
+      "identity": {
+        "vendor": "Asuswrt Merlin Project",
+        "model": "rt ac3200",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:asuswrt-merlin_project:rt-ac3200:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.17",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:07",
+      "identity": {
+        "vendor": "Canon",
+        "model": "i sensys mf754cdw",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:canon:i-sensys_mf754cdw:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.18",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:08",
+      "identity": {
+        "vendor": "Sony",
+        "model": "snc vb632d",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:sony:snc-vb632d:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.19",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:09",
+      "identity": {
+        "vendor": "Oringnet",
+        "model": "iap 420\\+",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:oringnet:iap-420\\+:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.20",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:0a",
+      "identity": {
+        "vendor": "Carlosgavazzi",
+        "model": "vmu c em",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:carlosgavazzi:vmu-c_em:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.21",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:0b",
+      "identity": {
+        "vendor": "Insteon",
+        "model": "insteon hub 2245 222",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:insteon:insteon_hub_2245-222:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.22",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:0c",
+      "identity": {
+        "vendor": "Samsung",
+        "model": "note2",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:samsung:note2:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.23",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:0d",
+      "identity": {
+        "vendor": "Campcodes Video Sharing Website Project",
+        "model": "campcodes video sharing website",
+        "version": "1.0",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:a:campcodes_video_sharing_website_project:campcodes_video_sharing_website:1.0:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.24",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:0e",
+      "identity": {
+        "vendor": "Google",
+        "model": "pixel 5a",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:google:pixel_5a:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.25",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:0f",
+      "identity": {
+        "vendor": "Brother",
+        "model": "dcp j572dw",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:brother:dcp-j572dw:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.26",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:10",
+      "identity": {
+        "vendor": "Lorextechnology",
+        "model": "edge3",
+        "version": "lh340",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:lorextechnology:edge3:lh340:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.27",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:11",
+      "identity": {
+        "vendor": "Asus",
+        "model": "rog maximus viii extreme",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:asus:rog_maximus_viii_extreme:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.28",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:12",
+      "identity": {
+        "vendor": "Axis",
+        "model": "2120 network camera",
+        "version": "2.31",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:axis:2120_network_camera:2.31:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.29",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:13",
+      "identity": {
+        "vendor": "Roku",
+        "model": "roku",
+        "version": "Unknown",
+        "detection_method": "mDNS"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:roku:roku:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.30",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:14",
+      "identity": {
+        "vendor": "Lg",
+        "model": "e971",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:lg:e971:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.31",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:15",
+      "identity": {
+        "vendor": "Hanwha Security",
+        "model": "srd 1694u",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:hanwha-security:srd-1694u:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.32",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:16",
+      "identity": {
+        "vendor": "Philips",
+        "model": "intellivue mp50",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:philips:intellivue_mp50:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.33",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:17",
+      "identity": {
+        "vendor": "Belkin",
+        "model": "f5d8236 4",
+        "version": "2",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:belkin:f5d8236-4:2:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.34",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:18",
+      "identity": {
+        "vendor": "Amazonbasics",
+        "model": "wireless keyboard",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:amazonbasics:wireless_keyboard:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.35",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:19",
+      "identity": {
+        "vendor": "Amazon",
+        "model": "echo dot",
+        "version": "3.0",
+        "detection_method": "mDNS"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:amazon:echo_dot:3.0:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.36",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:1a",
+      "identity": {
+        "vendor": "Wyze",
+        "model": "cam v3",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:wyze:cam_v3:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.37",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:1b",
+      "identity": {
+        "vendor": "Hpe",
+        "model": "aruba cx 8320 48p",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:hpe:aruba_cx_8320-48p:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.38",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:1c",
+      "identity": {
+        "vendor": "Apple",
+        "model": "m1 max",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:apple:m1_max:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.39",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:1d",
+      "identity": {
+        "vendor": "Asustor",
+        "model": "as602t",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:asustor:as602t:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.40",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:1e",
+      "identity": {
+        "vendor": "Ericsson Lg",
+        "model": "ipecs",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:ericsson-lg:ipecs:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.41",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:1f",
+      "identity": {
+        "vendor": "Boschsecurity",
+        "model": "nbn 498 dinion2x day\\/night ip cameras",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:boschsecurity:nbn-498_dinion2x_day\\/night_ip_cameras:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.42",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:20",
+      "identity": {
+        "vendor": "Tp Link",
+        "model": "wr840n",
+        "version": "2",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:tp-link:wr840n:2:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.43",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:21",
+      "identity": {
+        "vendor": "Solar Log",
+        "model": "solar log 1000 pm\\+",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:solar-log:solar-log_1000_pm\\+:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.44",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:22",
+      "identity": {
+        "vendor": "Ring",
+        "model": "ring",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:ring:ring:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.45",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:23",
+      "identity": {
+        "vendor": "Hanwhavision",
+        "model": "xnv 8030r",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:hanwhavision:xnv-8030r:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.46",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:24",
+      "identity": {
+        "vendor": "Pixelgrade",
+        "model": "nova blocks",
+        "version": "1.6.2",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:a:pixelgrade:nova_blocks:1.6.2:*:*:*:*:wordpress:*:*"
+    },
+    {
+      "ip": "192.168.1.47",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:25",
+      "identity": {
+        "vendor": "Hp",
+        "model": "j8j74a",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:hp:j8j74a:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.48",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:26",
+      "identity": {
+        "vendor": "Phpgurukul",
+        "model": "bank locker management system",
+        "version": "1.0",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:a:phpgurukul:bank_locker_management_system:1.0:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.49",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:27",
+      "identity": {
+        "vendor": "Arlo",
+        "model": "q plus",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:arlo:q_plus:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.50",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:28",
+      "identity": {
+        "vendor": "Mikrotik",
+        "model": "ccr1036 12g 4s em",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:mikrotik:ccr1036-12g-4s-em:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.51",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:29",
+      "identity": {
+        "vendor": "August",
+        "model": "connect wi fi bridge",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:august:connect_wi-fi_bridge:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.52",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:2a",
+      "identity": {
+        "vendor": "Sonos",
+        "model": "sonos",
+        "version": "Unknown",
+        "detection_method": "mDNS"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:sonos:sonos:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.53",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:2b",
+      "identity": {
+        "vendor": "Brother Industries",
+        "model": "mfc j960dwn firmware",
+        "version": "d",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:o:brother_industries:mfc-j960dwn_firmware:d:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.54",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:2c",
+      "identity": {
+        "vendor": "Lutron",
+        "model": "radiora 2",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:lutron:radiora_2:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.55",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:2d",
+      "identity": {
+        "vendor": "Linksys",
+        "model": "wag200g",
+        "version": "1.01.01",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:linksys:wag200g:1.01.01:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.56",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:2e",
+      "identity": {
+        "vendor": "Geovision",
+        "model": "gv fe420",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:geovision:gv-fe420:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.57",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:2f",
+      "identity": {
+        "vendor": "Qnap",
+        "model": "qvp 85a",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:qnap:qvp-85a:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.58",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:30",
+      "identity": {
+        "vendor": "Lynxspring",
+        "model": "jenesys bas bridge",
+        "version": "1.1.8",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:a:lynxspring:jenesys_bas_bridge:1.1.8:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.59",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:31",
+      "identity": {
+        "vendor": "Dahuasecurity",
+        "model": "nvr4832 16p 4ks2\\/i",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:dahuasecurity:nvr4832-16p-4ks2\\/i:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.60",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:32",
+      "identity": {
+        "vendor": "Netgear",
+        "model": "r6230",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:netgear:r6230:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.61",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:33",
+      "identity": {
+        "vendor": "Video Sharing Website Project",
+        "model": "video sharing website",
+        "version": "1.0",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:a:video_sharing_website_project:video_sharing_website:1.0:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.62",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:34",
+      "identity": {
+        "vendor": "D Link",
+        "model": "dir 868lw firmware",
+        "version": "1.12b",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:o:d-link:dir-868lw_firmware:1.12b:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.63",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:35",
+      "identity": {
+        "vendor": "Amcrest",
+        "model": "ip8m 2496eb",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:amcrest:ip8m-2496eb:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.64",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:36",
+      "identity": {
+        "vendor": "Hanwhasecurity",
+        "model": "srn 4000",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:hanwhasecurity:srn-4000:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.65",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:37",
+      "identity": {
+        "vendor": "Bosch",
+        "model": "dinion ip starlight 7000 hd",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:bosch:dinion_ip_starlight_7000_hd:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.66",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:38",
+      "identity": {
+        "vendor": "Dlink",
+        "model": "des 3200 26",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:dlink:des-3200-26:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.67",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:39",
+      "identity": {
+        "vendor": "Readymade Video Sharing Script Project",
+        "model": "readymade video sharing script",
+        "version": "3.2",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:a:readymade_video_sharing_script_project:readymade_video_sharing_script:3.2:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.68",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:3a",
+      "identity": {
+        "vendor": "Hikvision",
+        "model": "ds 2df8225ix aelw\\(t3\\)",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:hikvision:ds-2df8225ix-aelw\\(t3\\):-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.69",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:3b",
+      "identity": {
+        "vendor": "Heroku Addonpool Project",
+        "model": "heroku addonpool",
+        "version": "0.1.15",
+        "detection_method": "mDNS"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:a:heroku-addonpool_project:heroku-addonpool:0.1.15:*:*:*:*:node.js:*:*"
+    },
+    {
+      "ip": "192.168.1.70",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:3c",
+      "identity": {
+        "vendor": "Mikrotik Router Monitoring System Project",
+        "model": "mikrotik router monitoring system",
+        "version": "2018-10-22",
+        "detection_method": "SSH"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:a:mikrotik-router-monitoring-system_project:mikrotik-router-monitoring-system:2018-10-22:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.71",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:3d",
+      "identity": {
+        "vendor": "Heroku Env Project",
+        "model": "heroku env",
+        "version": "0.2.0",
+        "detection_method": "mDNS"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:a:heroku-env_project:heroku-env:0.2.0:*:*:*:*:node.js:*:*"
+    },
+    {
+      "ip": "192.168.1.72",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:3e",
+      "identity": {
+        "vendor": "Vivotek",
+        "model": "ib8377 eht",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:vivotek:ib8377-eht:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.73",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:3f",
+      "identity": {
+        "vendor": "Synology",
+        "model": "ds116",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:synology:ds116:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.74",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:40",
+      "identity": {
+        "vendor": "Turing",
+        "model": "edge\\+ evc5fd",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:turing:edge\\+_evc5fd:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.75",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:41",
+      "identity": {
+        "vendor": "Seagate",
+        "model": "wireless plus mobile storage",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:seagate:wireless_plus_mobile_storage:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.76",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:42",
+      "identity": {
+        "vendor": "Tollgrade",
+        "model": "smartgrid lighthouse sensor management system",
+        "version": "5.0",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:a:tollgrade:smartgrid_lighthouse_sensor_management_system:5.0:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.77",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:43",
+      "identity": {
+        "vendor": "Boschrexroth",
+        "model": "ctrlx hmi web panel wr2110",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:boschrexroth:ctrlx_hmi_web_panel_wr2110:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.78",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:44",
+      "identity": {
+        "vendor": "Algosolutions",
+        "model": "8373 ip zone paging adapter",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:algosolutions:8373_ip_zone_paging_adapter:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.79",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:45",
+      "identity": {
+        "vendor": "Epson",
+        "model": "lp s7500ps",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:epson:lp-s7500ps:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.80",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:46",
+      "identity": {
+        "vendor": "Secutech Project",
+        "model": "ris 33",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:secutech_project:ris-33:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.81",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:47",
+      "identity": {
+        "vendor": "Shenzhen Dragon Brothers",
+        "model": "fb50",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:shenzhen_dragon_brothers:fb50:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.82",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:48",
+      "identity": {
+        "vendor": "Honeywell",
+        "model": "cn75",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:honeywell:cn75:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.83",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:49",
+      "identity": {
+        "vendor": "Ecobee",
+        "model": "ecobee3 lite",
+        "version": "Unknown",
+        "detection_method": "mDNS"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:ecobee:ecobee3_lite:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.84",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:4a",
+      "identity": {
+        "vendor": "Cisco",
+        "model": "call manager",
+        "version": "4.3",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:cisco:call_manager:4.3:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.85",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:4b",
+      "identity": {
+        "vendor": "Qnap",
+        "model": "ts 469u firmware",
+        "version": "4.0.7",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:o:qnap:ts-469u_firmware:4.0.7:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.86",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:4c",
+      "identity": {
+        "vendor": "Qnap",
+        "model": "ts 469u",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:qnap:ts-469u:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.87",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:4d",
+      "identity": {
+        "vendor": "Qnap",
+        "model": "ts ec1679u rp firmware",
+        "version": "4.0.7",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:o:qnap:ts-ec1679u-rp_firmware:4.0.7:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.88",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:4e",
+      "identity": {
+        "vendor": "Qnap",
+        "model": "ts ec1679u rp",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:qnap:ts-ec1679u-rp:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.89",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:4f",
+      "identity": {
+        "vendor": "Lutron",
+        "model": "quantum bacnet integration firmware",
+        "version": "3.2.243",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:o:lutron:quantum_bacnet_integration_firmware:3.2.243:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.90",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:50",
+      "identity": {
+        "vendor": "Lutron",
+        "model": "quantum bacnet integration",
+        "version": "2.0",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:lutron:quantum_bacnet_integration:2.0:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.91",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:51",
+      "identity": {
+        "vendor": "Lutron",
+        "model": "stanza firmware",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:o:lutron:stanza_firmware:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.92",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:52",
+      "identity": {
+        "vendor": "Lutron",
+        "model": "stanza",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:lutron:stanza:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.93",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:53",
+      "identity": {
+        "vendor": "Roku",
+        "model": "roku firmware",
+        "version": "Unknown",
+        "detection_method": "mDNS"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:roku:roku_firmware:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.94",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:54",
+      "identity": {
+        "vendor": "Roku",
+        "model": "express",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:roku:express:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.95",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:55",
+      "identity": {
+        "vendor": "Roku",
+        "model": "express 4k\\+",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:roku:express_4k\\+:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.96",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:56",
+      "identity": {
+        "vendor": "Roku",
+        "model": "roku tv",
+        "version": "Unknown",
+        "detection_method": "mDNS"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:roku:roku_tv:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.97",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:57",
+      "identity": {
+        "vendor": "Asus",
+        "model": "video security online",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:a:asus:video_security_online:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.98",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:58",
+      "identity": {
+        "vendor": "Asus",
+        "model": "net4switch",
+        "version": "1.0.0020",
+        "detection_method": "SSH"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:a:asus:net4switch:1.0.0020:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.99",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:59",
+      "identity": {
+        "vendor": "Asus",
+        "model": "rt ac66u firmware",
+        "version": "3.0.0.4.354",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:o:asus:rt-ac66u_firmware:3.0.0.4.354:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.100",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:5a",
+      "identity": {
+        "vendor": "Asus",
+        "model": "rt ac66u firmware",
+        "version": "3.0.0.4.270",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:o:asus:rt-ac66u_firmware:3.0.0.4.270:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.101",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:5b",
+      "identity": {
+        "vendor": "Lorextechnology",
+        "model": "edge",
+        "version": "lh310",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:lorextechnology:edge:lh310:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.102",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:5c",
+      "identity": {
+        "vendor": "Lorextechnology",
+        "model": "edge\\+",
+        "version": "lh320",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:lorextechnology:edge\\+:lh320:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.103",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:5d",
+      "identity": {
+        "vendor": "Lorextechnology",
+        "model": "edge lh310 firmware",
+        "version": "7-35-28-1b26e",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:o:lorextechnology:edge_lh310_firmware:7-35-28-1b26e:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.104",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:5e",
+      "identity": {
+        "vendor": "Lorextechnology",
+        "model": "edge\\+ lh320 firmware",
+        "version": "7-35-28-1b26e",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:o:lorextechnology:edge\\+_lh320_firmware:7-35-28-1b26e:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.105",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:5f",
+      "identity": {
+        "vendor": "Sonos",
+        "model": "sonos firmware",
+        "version": "Unknown",
+        "detection_method": "mDNS"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:o:sonos:sonos_firmware:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.106",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:60",
+      "identity": {
+        "vendor": "Sonos",
+        "model": "one",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:h:sonos:one:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.107",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:61",
+      "identity": {
+        "vendor": "Sonos",
+        "model": "one firmware",
+        "version": "Unknown",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:o:sonos:one_firmware:-:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.108",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:62",
+      "identity": {
+        "vendor": "Sonos",
+        "model": "one firmware",
+        "version": "70.3-35220",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:o:sonos:one_firmware:70.3-35220:*:*:*:*:*:*:*"
+    },
+    {
+      "ip": "192.168.1.109",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:11:22:33:00:63",
+      "identity": {
+        "vendor": "Oringnet",
+        "model": "iap 420\\+ firmware",
+        "version": "2.0m",
+        "detection_method": "HTTP"
+      },
+      "cpe_suggestion": null,
+      "cpe_validation_status": null,
+      "expected_cpe": "cpe:2.3:o:oringnet:iap-420\\+_firmware:2.0m:*:*:*:*:*:*:*"
+    }
+  ]
+}

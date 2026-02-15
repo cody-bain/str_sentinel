@@ -9,6 +9,8 @@ import re
 from protocol_handlers.mdns_handler import run_mdns_scan
 from protocol_handlers.http_handler import run_http_scan
 from protocol_handlers.ssh_handler import run_ssh_scan
+# CPE Validation
+from cpe_validator import validate_cpe
 
 # Some code snippets developed with assistance from generative AI tools. All AI-generated content was reviewed, revised, and adapted to meet STR Sentinel requirements.
 
@@ -31,19 +33,22 @@ def generate_cpe(identity):
     
     # Format version properly (remove wildcards if I have actual version)
     if version and version != 'Unknown' and version != '*':
-        # Clean version string (ex. "7.6p1" -> "7.6:p1" for CPE format)
-        version_clean = version.replace("p", ":p") if "p" in version else version
+        # Keep version string as-is for CPE format (e.g., "7.6p1")
+        # Don't add colons - CPE 2.3 requires exactly 11 fields
+        version_clean = version
     else:
         version_clean = "*"
     
     # Determine CPE type based on what was detected:
     #    SSH always detects applications/services (OpenSSH, Dropbear, etc.)
     #    Generic web servers (nginx, Apache) are applications even if found via HTTP
-    #    Device-specific models (Hikvision Web Server, Nest) are hardware
-    software_indicators = ['ssh', 'apache', 'nginx', 'iis', 'lighttpd', 'tomcat', 'openssh'] # SCALE THIS!
+    #    Media devices (Apple TV, Chromecast) are applications
+    #    Device-specific models (Hikvision Web Server, cameras) are hardware
+    software_indicators = ['ssh', 'apache', 'nginx', 'iis', 'lighttpd', 'tomcat', 'openssh', 'apple_tv'] # SCALE THIS!
     is_software = (
         identity.get('detection_method') == 'SSH' or
-        identity.get('model', '').lower() in software_indicators
+        identity.get('model', '').lower() in software_indicators or
+        'apple tv' in identity.get('model', '').lower()
     )
     cpe_type = 'a' if is_software else 'h'
     
@@ -96,8 +101,9 @@ def run_discovery(target, output=None):
                     # Enrich host record with specific model info
                     host['identity'] = mdns_data[ip]
                     
-                    # Generate CPE using actual version
-                    host['cpe_suggestion'] = generate_cpe(host['identity'])
+                    # Generate and validate CPE against NVD database
+                    detected_cpe = generate_cpe(host['identity'])
+                    host['cpe_suggestion'], host['cpe_validation_status'] = validate_cpe(detected_cpe)
                     
                     logging.info(f"--> Identity Confirmed for {ip}: {host['identity']['vendor']} {host['identity']['model']}")
         
@@ -120,8 +126,9 @@ def run_discovery(target, output=None):
                     if not host['identity']:
                         host['identity'] = http_data[ip]
                         
-                        # Generate CPE with model extraction from title
-                        host['cpe_suggestion'] = generate_cpe(host['identity'])
+                        # Generate and validate CPE against NVD database
+                        detected_cpe = generate_cpe(host['identity'])
+                        host['cpe_suggestion'], host['cpe_validation_status'] = validate_cpe(detected_cpe)
                         
                         logging.info(f"--> Identity Confirmed for {ip}: {host['identity']['vendor']} {host['identity']['model']}")
                     else:
@@ -147,8 +154,9 @@ def run_discovery(target, output=None):
                     if not host['identity']:
                         host['identity'] = ssh_data[ip]
                         
-                        # Generate CPE with actual version
-                        host['cpe_suggestion'] = generate_cpe(host['identity'])
+                        # Generate and validate CPE against NVD database
+                        detected_cpe = generate_cpe(host['identity'])
+                        host['cpe_suggestion'], host['cpe_validation_status'] = validate_cpe(detected_cpe)
                         
                         logging.info(f"--> Identity Confirmed for {ip}: {host['identity']['vendor']} {host['identity']['model']}")
                     else:
@@ -169,7 +177,7 @@ def run_discovery(target, output=None):
 if __name__ == "__main__":
     ## Accept parameters from the command line
     parser = argparse.ArgumentParser(description="STR Sentinel Network Discovery")
-    parser.add_argument('--subnet', type=str, default=os.getenv('STR_SUBNET', '172.20.0.0/24'), help='Target subnet to scan')
+    parser.add_argument('subnet', type=str, nargs='?', default=os.getenv('STR_SUBNET', '172.20.0.0/24'), help='Target subnet to scan')
     parser.add_argument('--output', type=str, help='Optional output file (JSON)')
     parser.add_argument('--log', type=str, default=None, help='Optional log file')
     args = parser.parse_args()

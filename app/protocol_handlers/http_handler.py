@@ -5,6 +5,7 @@ import urllib3
 import subprocess
 import json
 
+# Some code snippets developed with assistance from generative AI tools. All AI-generated content was reviewed, revised, and adapted to meet STR Sentinel requirements.
 # Suppress SSL warnings for self-signed certificates
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -91,6 +92,12 @@ def probe_http_service(ip, port=80, timeout=3):
             
             # Detect device using pattern matching
             vendor, model = detect_device_from_http(headers, html, title)
+            
+            # For Hikvision cameras, extract specific model from title
+            if vendor and vendor.lower() == 'hikvision' and title:
+                model_match = re.search(r'(DS-\w+(?:-\w+)?(?:\([A-Z]\))?)', title, re.IGNORECASE)
+                if model_match:
+                    model = model_match.group(1)
             
             # Extract version from Server header if available
             version = "Unknown"

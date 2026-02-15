@@ -3,17 +3,18 @@
     "ip": "172.20.0.1",
     "status": "up",
     "hostname": null,
-    "mac": "DA:10:29:54:3C:75",
+    "mac": "EE:13:54:F4:BA:CD",
     "identity": {
       "vendor": "Hikvision",
-      "model": "Hikvision Web Server",
+      "model": "DS-2CD2032-I",
       "version": "Unknown",
       "detection_method": "HTTP",
       "http_url": "http://172.20.0.1:8081",
-      "http_title": "Hikvision DS-2CD2042WD-I Network Camera",
+      "http_title": "Hikvision DS-2CD2032-I Network Camera",
       "http_server": "nginx, Hikvision-Webs"
     },
-    "cpe_suggestion": "cpe:2.3:h:hikvision:ds_2cd2042wd_i:*:*:*:*:*:*:*:*"
+    "cpe_suggestion": "cpe:2.3:h:hikvision:ds-2cd2032-i:-:*:*:*:*:*:*:*",
+    "cpe_validation_status": "validated"
   },
   {
     "ip": "172.20.0.10",
@@ -22,14 +23,15 @@
     "mac": "00:40:8C:11:22:33",
     "identity": {
       "vendor": "Hikvision",
-      "model": "Hikvision Web Server",
+      "model": "DS-2CD2032-I",
       "version": "Unknown",
       "detection_method": "HTTP",
       "http_url": "http://172.20.0.10:80",
-      "http_title": "Hikvision DS-2CD2042WD-I Network Camera",
+      "http_title": "Hikvision DS-2CD2032-I Network Camera",
       "http_server": "nginx, Hikvision-Webs"
     },
-    "cpe_suggestion": "cpe:2.3:h:hikvision:ds_2cd2042wd_i:*:*:*:*:*:*:*:*"
+    "cpe_suggestion": "cpe:2.3:h:hikvision:ds-2cd2032-i:-:*:*:*:*:*:*:*",
+    "cpe_validation_status": "validated"
   },
   {
     "ip": "172.20.0.20",
@@ -43,27 +45,31 @@
       "detection_method": "SSH",
       "ssh_banner": "SSH-2.0-OpenSSH_7.6p1 Ubuntu-4"
     },
-    "cpe_suggestion": "cpe:2.3:a:openbsd:openssh:7.6:p1:*:*:*:*:*:*:*"
+    "cpe_suggestion": "cpe:2.3:a:openbsd:openssh:7.6:p1:*:*:*:*:*:*",
+    "cpe_validation_status": "validated"
   },
   {
     "ip": "172.20.0.35",
     "status": "up",
     "hostname": null,
-    "mac": "18:B4:30:12:34:56",
+    "mac": "00:03:93:12:34:56",
     "identity": {
-      "mdns_name": "Nest Learning Thermostat._googlecast._tcp.local.",
-      "service_type": "_googlecast._tcp.local.",
-      "vendor": "Nest",
-      "model": "Nest Learning Thermostat",
-      "version": "3.0",
+      "mdns_name": "Apple TV._airplay._tcp.local.",
+      "service_type": "_airplay._tcp.local.",
+      "vendor": "Apple",
+      "model": "Apple TV",
+      "version": "11.0",
       "id": "Unknown",
       "detection_method": "mDNS",
       "all_properties": {
-        "md": "Nest Learning Thermostat",
-        "ve": "3.0"
+        "model": "AppleTV5,3",
+        "osvers": "11.0",
+        "srcvers": "220.68",
+        "features": "0x5A7FFFF7,0xE"
       }
     },
-    "cpe_suggestion": "cpe:2.3:h:nest:nest_learning_thermostat:3.0:*:*:*:*:*:*:*"
+    "cpe_suggestion": "cpe:2.3:a:apple:apple_tv:11.0:*:*:*:*:*:*:*",
+    "cpe_validation_status": "validated"
   },
   {
     "ip": "172.20.0.50",

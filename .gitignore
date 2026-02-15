@@ -1,3 +1,4 @@
+.env
 __pycache__/
 *.pyc
 *.pyo
@@ -7,3 +8,6 @@ __pycache__/
 .DS_Store
 progress-report-bain.docx
 ~$ogress-report-bain.docx
+
+# Large CPE database file (download locally with download_cpe_database.py)
+app/shared/cpe_dictionary.json

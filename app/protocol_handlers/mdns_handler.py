@@ -3,7 +3,7 @@ import socket
 import time
 import logging
 
-# File developed with assistance from generative AI tools. All AI-generated content was reviewed, revised, and adapted to meet STR Sentinel requirements.
+# Some code snippets developed with assistance from generative AI tools. All AI-generated content was reviewed, revised, and adapted to meet STR Sentinel requirements.
 
 class MDNSCollector:
     def __init__(self):
@@ -41,12 +41,17 @@ class MDNSCollector:
                 # Extract vendor from model (e.g., "Nest Learning Thermostat" -> "Nest")
                 vendor = model.split()[0] if model != 'Unknown' else 'Unknown'
                 
+                # Special handling for Apple TV (uses 'model' field like "AppleTV5,3")
+                if 'model' in properties and properties['model'].startswith('AppleTV'):
+                    vendor = 'Apple'
+                    model = 'Apple TV'
+                
                 self.found_devices[ip] = {
                     "mdns_name": name,
                     "service_type": type,
                     "vendor": vendor,
                     "model": model,
-                    "version": properties.get('ve') or properties.get('version') or properties.get('sw') or 'Unknown',
+                    "version": properties.get('osvers') or properties.get('ve') or properties.get('version') or properties.get('sw') or 'Unknown',
                     "id": properties.get('id') or properties.get('deviceid') or properties.get('uuid') or 'Unknown',
                     "detection_method": "mDNS",
                     "all_properties": properties if properties else None  # Include all properties for analysis
@@ -71,6 +76,7 @@ def run_mdns_scan(scan_duration=5):
     # *** ADD MORE SERVICES TO LIST LATER ***
     services_to_track = [
         "_googlecast._tcp.local.",  # Nest Thermostats / Google Home
+        "_airplay._tcp.local.",     # Apple TV / AirPlay devices
         "_http._tcp.local.",        # Generic Web Devices
         "_ssh._tcp.local."          # Some IoT SSH devices
     ]
