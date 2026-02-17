@@ -9,3 +9,4 @@ scapy==2.7.0
 python-nmap
 urllib3==2.6.3
 zeroconf
+flask==3.0.0

@@ -1,81 +1,813 @@
-[
-  {
-    "ip": "172.20.0.1",
-    "status": "up",
-    "hostname": null,
-    "mac": "EE:13:54:F4:BA:CD",
-    "identity": {
-      "vendor": "Hikvision",
-      "model": "DS-2CD2032-I",
-      "version": "Unknown",
-      "detection_method": "HTTP",
-      "http_url": "http://172.20.0.1:8081",
-      "http_title": "Hikvision DS-2CD2032-I Network Camera",
-      "http_server": "nginx, Hikvision-Webs"
-    },
-    "cpe_suggestion": "cpe:2.3:h:hikvision:ds-2cd2032-i:-:*:*:*:*:*:*:*",
-    "cpe_validation_status": "validated"
+{
+  "scan_info": {
+    "timestamp": "2026-02-15T14:01:31.501652",
+    "subnet": "172.20.0.0/24",
+    "duration": null
   },
-  {
-    "ip": "172.20.0.10",
-    "status": "up",
-    "hostname": null,
-    "mac": "00:40:8C:11:22:33",
-    "identity": {
-      "vendor": "Hikvision",
-      "model": "DS-2CD2032-I",
-      "version": "Unknown",
-      "detection_method": "HTTP",
-      "http_url": "http://172.20.0.10:80",
-      "http_title": "Hikvision DS-2CD2032-I Network Camera",
-      "http_server": "nginx, Hikvision-Webs"
-    },
-    "cpe_suggestion": "cpe:2.3:h:hikvision:ds-2cd2032-i:-:*:*:*:*:*:*:*",
-    "cpe_validation_status": "validated"
+  "network_summary": {
+    "total_devices": 5,
+    "devices_at_risk": 4,
+    "total_cves": 48,
+    "average_risk_score": 43.6,
+    "network_risk_level": "High",
+    "severity_breakdown": {
+      "critical": 1,
+      "high": 1,
+      "medium": 0,
+      "low": 2,
+      "minimal": 0,
+      "unknown": 1
+    }
   },
-  {
-    "ip": "172.20.0.20",
-    "status": "up",
-    "hostname": null,
-    "mac": "00:1E:14:AA:BB:CC",
-    "identity": {
-      "vendor": "OpenBSD",
-      "model": "OpenSSH",
-      "version": "7.6p1",
-      "detection_method": "SSH",
-      "ssh_banner": "SSH-2.0-OpenSSH_7.6p1 Ubuntu-4"
+  "devices": [
+    {
+      "ip": "172.20.0.1",
+      "status": "up",
+      "hostname": null,
+      "mac": "12:F4:E7:13:B8:DC",
+      "identity": {
+        "vendor": "Hikvision",
+        "model": "DS-2CD2032-I",
+        "version": "Unknown",
+        "detection_method": "HTTP",
+        "http_url": "http://172.20.0.1:8081",
+        "http_title": "Hikvision DS-2CD2032-I Network Camera",
+        "http_server": "nginx, Hikvision-Webs"
+      },
+      "cpe_suggestion": "cpe:2.3:h:hikvision:ds-2cd2032-i:-:*:*:*:*:*:*:*",
+      "cpe_validation_status": "validated",
+      "cve_results": {
+        "cpe": "cpe:2.3:h:hikvision:ds-2cd2032-i:-:*:*:*:*:*:*:*",
+        "cve_count": 2,
+        "cves": [
+          {
+            "id": "CVE-2017-7921",
+            "description": "An Improper Authentication issue was discovered in Hikvision DS-2CD2xx2F-I Series V5.2.0 build 140721 to V5.4.0 build 160530, DS-2CD2xx0F-I Series V5.2.0 build 140721 to V5.4.0 Build 160401, DS-2CD2xx2FWD Series V5.3.1 build 150410 to V5.4.4 Build 161125, DS-2CD4x2xFWD Series V5.2.0 build 140721 to V5.4.0 Build 160414, DS-2CD4xx5 Series V5.2.0 build 140721 to V5.4.0 Build 160421, DS-2DFx Series V5.2.0 build 140805 to V5.4.5 Build 160928, and DS-2CD63xx Series V5.0.9 build 140305 to V5.3.5 Build 160106 devices. The improper authentication vulnerability occurs when an application does not adequately or correctly authenticate users. This may allow a malicious user to escalate his or her privileges on the system and gain access to sensitive information.",
+            "cvss_score": 10.0,
+            "cvss_severity": "CRITICAL",
+            "cvss_vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+            "cvss_version": "3.0",
+            "published": "2017-05-06T00:29:00.350",
+            "last_modified": "2025-04-20T01:37:25.860",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2017-7921"
+          },
+          {
+            "id": "CVE-2017-7923",
+            "description": "A Password in Configuration File issue was discovered in Hikvision DS-2CD2xx2F-I Series V5.2.0 build 140721 to V5.4.0 build 160530, DS-2CD2xx0F-I Series V5.2.0 build 140721 to V5.4.0 Build 160401, DS-2CD2xx2FWD Series V5.3.1 build 150410 to V5.4.4 Build 161125, DS-2CD4x2xFWD Series V5.2.0 build 140721 to V5.4.0 Build 160414, DS-2CD4xx5 Series V5.2.0 build 140721 to V5.4.0 Build 160421, DS-2DFx Series V5.2.0 build 140805 to V5.4.5 Build 160928, and DS-2CD63xx Series V5.0.9 build 140305 to V5.3.5 Build 160106 devices. The password in configuration file vulnerability could allow a malicious user to escalate privileges or assume the identity of another user and access sensitive information.",
+            "cvss_score": 8.8,
+            "cvss_severity": "HIGH",
+            "cvss_vector": "CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+            "cvss_version": "3.0",
+            "published": "2017-05-06T00:29:00.380",
+            "last_modified": "2025-04-20T01:37:25.860",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2017-7923"
+          }
+        ],
+        "cached": false
+      },
+      "risk_assessment": {
+        "risk_score": 31,
+        "risk_level": "Low",
+        "confidence": "High",
+        "factors": {
+          "cve_count": {
+            "count": 2,
+            "points": 10,
+            "weight": "30%"
+          },
+          "cvss_severity": {
+            "critical": 1,
+            "high": 1,
+            "medium": 0,
+            "low": 0,
+            "points": 15,
+            "weight": "50%"
+          },
+          "validation": {
+            "status": "validated",
+            "penalty": 0,
+            "weight": "10%"
+          },
+          "device_exposure": {
+            "type": "HTTP",
+            "points": 6,
+            "weight": "10%"
+          }
+        }
+      },
+      "recommendations": [
+        "\u26a0\ufe0f URGENT: 1 critical vulnerabilities detected - patch immediately or isolate device",
+        "\u26a0\ufe0f 1 high-severity vulnerabilities - update firmware/software as soon as possible",
+        "Network camera detected - ensure it's on an isolated VLAN and change default credentials"
+      ]
     },
-    "cpe_suggestion": "cpe:2.3:a:openbsd:openssh:7.6:p1:*:*:*:*:*:*",
-    "cpe_validation_status": "validated"
-  },
-  {
-    "ip": "172.20.0.35",
-    "status": "up",
-    "hostname": null,
-    "mac": "00:03:93:12:34:56",
-    "identity": {
-      "mdns_name": "Apple TV._airplay._tcp.local.",
-      "service_type": "_airplay._tcp.local.",
-      "vendor": "Apple",
-      "model": "Apple TV",
-      "version": "11.0",
-      "id": "Unknown",
-      "detection_method": "mDNS",
-      "all_properties": {
-        "model": "AppleTV5,3",
-        "osvers": "11.0",
-        "srcvers": "220.68",
-        "features": "0x5A7FFFF7,0xE"
-      }
+    {
+      "ip": "172.20.0.10",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:40:8C:11:22:33",
+      "identity": {
+        "vendor": "Hikvision",
+        "model": "DS-2CD2032-I",
+        "version": "Unknown",
+        "detection_method": "HTTP",
+        "http_url": "http://172.20.0.10:80",
+        "http_title": "Hikvision DS-2CD2032-I Network Camera",
+        "http_server": "nginx, Hikvision-Webs"
+      },
+      "cpe_suggestion": "cpe:2.3:h:hikvision:ds-2cd2032-i:-:*:*:*:*:*:*:*",
+      "cpe_validation_status": "validated",
+      "cve_results": {
+        "cpe": "cpe:2.3:h:hikvision:ds-2cd2032-i:-:*:*:*:*:*:*:*",
+        "cve_count": 2,
+        "cves": [
+          {
+            "id": "CVE-2017-7921",
+            "description": "An Improper Authentication issue was discovered in Hikvision DS-2CD2xx2F-I Series V5.2.0 build 140721 to V5.4.0 build 160530, DS-2CD2xx0F-I Series V5.2.0 build 140721 to V5.4.0 Build 160401, DS-2CD2xx2FWD Series V5.3.1 build 150410 to V5.4.4 Build 161125, DS-2CD4x2xFWD Series V5.2.0 build 140721 to V5.4.0 Build 160414, DS-2CD4xx5 Series V5.2.0 build 140721 to V5.4.0 Build 160421, DS-2DFx Series V5.2.0 build 140805 to V5.4.5 Build 160928, and DS-2CD63xx Series V5.0.9 build 140305 to V5.3.5 Build 160106 devices. The improper authentication vulnerability occurs when an application does not adequately or correctly authenticate users. This may allow a malicious user to escalate his or her privileges on the system and gain access to sensitive information.",
+            "cvss_score": 10.0,
+            "cvss_severity": "CRITICAL",
+            "cvss_vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+            "cvss_version": "3.0",
+            "published": "2017-05-06T00:29:00.350",
+            "last_modified": "2025-04-20T01:37:25.860",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2017-7921"
+          },
+          {
+            "id": "CVE-2017-7923",
+            "description": "A Password in Configuration File issue was discovered in Hikvision DS-2CD2xx2F-I Series V5.2.0 build 140721 to V5.4.0 build 160530, DS-2CD2xx0F-I Series V5.2.0 build 140721 to V5.4.0 Build 160401, DS-2CD2xx2FWD Series V5.3.1 build 150410 to V5.4.4 Build 161125, DS-2CD4x2xFWD Series V5.2.0 build 140721 to V5.4.0 Build 160414, DS-2CD4xx5 Series V5.2.0 build 140721 to V5.4.0 Build 160421, DS-2DFx Series V5.2.0 build 140805 to V5.4.5 Build 160928, and DS-2CD63xx Series V5.0.9 build 140305 to V5.3.5 Build 160106 devices. The password in configuration file vulnerability could allow a malicious user to escalate privileges or assume the identity of another user and access sensitive information.",
+            "cvss_score": 8.8,
+            "cvss_severity": "HIGH",
+            "cvss_vector": "CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+            "cvss_version": "3.0",
+            "published": "2017-05-06T00:29:00.380",
+            "last_modified": "2025-04-20T01:37:25.860",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2017-7923"
+          }
+        ],
+        "cached": true
+      },
+      "risk_assessment": {
+        "risk_score": 31,
+        "risk_level": "Low",
+        "confidence": "High",
+        "factors": {
+          "cve_count": {
+            "count": 2,
+            "points": 10,
+            "weight": "30%"
+          },
+          "cvss_severity": {
+            "critical": 1,
+            "high": 1,
+            "medium": 0,
+            "low": 0,
+            "points": 15,
+            "weight": "50%"
+          },
+          "validation": {
+            "status": "validated",
+            "penalty": 0,
+            "weight": "10%"
+          },
+          "device_exposure": {
+            "type": "HTTP",
+            "points": 6,
+            "weight": "10%"
+          }
+        }
+      },
+      "recommendations": [
+        "\u26a0\ufe0f URGENT: 1 critical vulnerabilities detected - patch immediately or isolate device",
+        "\u26a0\ufe0f 1 high-severity vulnerabilities - update firmware/software as soon as possible",
+        "Network camera detected - ensure it's on an isolated VLAN and change default credentials"
+      ]
     },
-    "cpe_suggestion": "cpe:2.3:a:apple:apple_tv:11.0:*:*:*:*:*:*:*",
-    "cpe_validation_status": "validated"
-  },
-  {
-    "ip": "172.20.0.50",
-    "status": "up",
-    "hostname": null,
-    "mac": null,
-    "identity": null
-  }
-]
+    {
+      "ip": "172.20.0.20",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:1E:14:AA:BB:CC",
+      "identity": {
+        "vendor": "OpenBSD",
+        "model": "OpenSSH",
+        "version": "7.6p1",
+        "detection_method": "SSH",
+        "ssh_banner": "SSH-2.0-OpenSSH_7.6p1 Ubuntu-4"
+      },
+      "cpe_suggestion": "cpe:2.3:a:openbsd:openssh:7.6:p1:*:*:*:*:*:*",
+      "cpe_validation_status": "validated",
+      "cve_results": {
+        "cpe": "cpe:2.3:a:openbsd:openssh:7.6:p1:*:*:*:*:*:*",
+        "cve_count": 19,
+        "cves": [
+          {
+            "id": "CVE-2007-2768",
+            "description": "OpenSSH, when using OPIE (One-Time Passwords in Everything) for PAM, allows remote attackers to determine the existence of certain user accounts, which displays a different response if the user account exists and is configured to use one-time passwords (OTP), a similar issue to CVE-2007-2243.",
+            "cvss_score": 4.3,
+            "cvss_severity": "MEDIUM",
+            "cvss_vector": "AV:N/AC:M/Au:N/C:P/I:N/A:N",
+            "cvss_version": "2.0",
+            "published": "2007-05-21T20:30:00.000",
+            "last_modified": "2025-04-09T00:30:58.490",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2007-2768"
+          },
+          {
+            "id": "CVE-2008-3844",
+            "description": "Certain Red Hat Enterprise Linux (RHEL) 4 and 5 packages for OpenSSH, as signed in August 2008 using a legitimate Red Hat GPG key, contain an externally introduced modification (Trojan Horse) that allows the package authors to have an unknown impact.  NOTE: since the malicious packages were not distributed from any official Red Hat sources, the scope of this issue is restricted to users who may have obtained these packages through unofficial distribution points.  As of 20080827, no unofficial distributions of this software are known.",
+            "cvss_score": 9.3,
+            "cvss_severity": "HIGH",
+            "cvss_vector": "AV:N/AC:M/Au:N/C:C/I:C/A:C",
+            "cvss_version": "2.0",
+            "published": "2008-08-27T20:41:00.000",
+            "last_modified": "2025-04-09T00:30:58.490",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2008-3844"
+          },
+          {
+            "id": "CVE-2018-15473",
+            "description": "OpenSSH through 7.7 is prone to a user enumeration vulnerability due to not delaying bailout for an invalid authenticating user until after the packet containing the request has been fully parsed, related to auth2-gss.c, auth2-hostbased.c, and auth2-pubkey.c.",
+            "cvss_score": 5.3,
+            "cvss_severity": "MEDIUM",
+            "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+            "cvss_version": "3.1",
+            "published": "2018-08-17T19:29:00.223",
+            "last_modified": "2025-12-17T22:15:54.557",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-15473"
+          },
+          {
+            "id": "CVE-2018-15919",
+            "description": "Remotely observable behaviour in auth-gss2.c in OpenSSH through 7.8 could be used by remote attackers to detect existence of users on a target system when GSS2 is in use. NOTE: the discoverer states 'We understand that the OpenSSH developers do not want to treat such a username enumeration (or \"oracle\") as a vulnerability.'",
+            "cvss_score": 5.3,
+            "cvss_severity": "MEDIUM",
+            "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+            "cvss_version": "3.1",
+            "published": "2018-08-28T08:29:00.207",
+            "last_modified": "2025-12-18T12:15:53.580",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-15919"
+          },
+          {
+            "id": "CVE-2018-20685",
+            "description": "In OpenSSH 7.9, scp.c in the scp client allows remote SSH servers to bypass intended access restrictions via the filename of . or an empty filename. The impact is modifying the permissions of the target directory on the client side.",
+            "cvss_score": 5.3,
+            "cvss_severity": "MEDIUM",
+            "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:H/A:N",
+            "cvss_version": "3.1",
+            "published": "2019-01-10T21:29:00.377",
+            "last_modified": "2025-12-17T22:15:55.163",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-20685"
+          },
+          {
+            "id": "CVE-2019-6109",
+            "description": "An issue was discovered in OpenSSH 7.9. Due to missing character encoding in the progress display, a malicious server (or Man-in-The-Middle attacker) can employ crafted object names to manipulate the client output, e.g., by using ANSI control codes to hide additional files being transferred. This affects refresh_progress_meter() in progressmeter.c.",
+            "cvss_score": 6.8,
+            "cvss_severity": "MEDIUM",
+            "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:N",
+            "cvss_version": "3.1",
+            "published": "2019-01-31T18:29:00.710",
+            "last_modified": "2024-11-21T04:45:57.517",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2019-6109"
+          },
+          {
+            "id": "CVE-2019-6110",
+            "description": "In OpenSSH 7.9, due to accepting and displaying arbitrary stderr output from the server, a malicious server (or Man-in-The-Middle attacker) can manipulate the client output, for example to use ANSI control codes to hide additional files being transferred.",
+            "cvss_score": 6.8,
+            "cvss_severity": "MEDIUM",
+            "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:N",
+            "cvss_version": "3.1",
+            "published": "2019-01-31T18:29:00.807",
+            "last_modified": "2025-12-18T15:15:47.940",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2019-6110"
+          },
+          {
+            "id": "CVE-2019-6111",
+            "description": "An issue was discovered in OpenSSH 7.9. Due to the scp implementation being derived from 1983 rcp, the server chooses which files/directories are sent to the client. However, the scp client only performs cursory validation of the object name returned (only directory traversal attacks are prevented). A malicious scp server (or Man-in-The-Middle attacker) can overwrite arbitrary files in the scp client target directory. If recursive operation (-r) is performed, the server can manipulate subdirectories as well (for example, to overwrite the .ssh/authorized_keys file).",
+            "cvss_score": 5.9,
+            "cvss_severity": "MEDIUM",
+            "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N",
+            "cvss_version": "3.1",
+            "published": "2019-01-31T18:29:00.867",
+            "last_modified": "2025-12-18T15:15:48.147",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2019-6111"
+          },
+          {
+            "id": "CVE-2020-14145",
+            "description": "The client side in OpenSSH 5.7 through 8.4 has an Observable Discrepancy leading to an information leak in the algorithm negotiation. This allows man-in-the-middle attackers to target initial connection attempts (where no host key for the server has been cached by the client). NOTE: some reports state that 8.5 and 8.6 are also affected.",
+            "cvss_score": 5.9,
+            "cvss_severity": "MEDIUM",
+            "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+            "cvss_version": "3.1",
+            "published": "2020-06-29T18:15:11.940",
+            "last_modified": "2025-12-18T15:15:48.410",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2020-14145"
+          },
+          {
+            "id": "CVE-2020-15778",
+            "description": "scp in OpenSSH through 8.3p1 allows command injection in the scp.c toremote function, as demonstrated by backtick characters in the destination argument. NOTE: the vendor reportedly has stated that they intentionally omit validation of \"anomalous argument transfers\" because that could \"stand a great chance of breaking existing workflows.\"",
+            "cvss_score": 7.4,
+            "cvss_severity": "HIGH",
+            "cvss_vector": "CVSS:3.1/AV:A/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:H",
+            "cvss_version": "3.1",
+            "published": "2020-07-24T14:15:12.450",
+            "last_modified": "2025-07-28T18:12:45.213",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2020-15778"
+          },
+          {
+            "id": "CVE-2016-20012",
+            "description": "OpenSSH through 8.7 allows remote attackers, who have a suspicion that a certain combination of username and public key is known to an SSH server, to test whether this suspicion is correct. This occurs because a challenge is sent only when that combination could be valid for a login session. NOTE: the vendor does not recognize user enumeration as a vulnerability for this product",
+            "cvss_score": 5.3,
+            "cvss_severity": "MEDIUM",
+            "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+            "cvss_version": "3.1",
+            "published": "2021-09-15T20:15:07.310",
+            "last_modified": "2024-11-21T02:47:33.240",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2016-20012"
+          },
+          {
+            "id": "CVE-2021-41617",
+            "description": "sshd in OpenSSH 6.2 through 8.x before 8.8, when certain non-default configurations are used, allows privilege escalation because supplemental groups are not initialized as expected. Helper programs for AuthorizedKeysCommand and AuthorizedPrincipalsCommand may run with privileges associated with group memberships of the sshd process, if the configuration specifies running the command as a different user.",
+            "cvss_score": 7.0,
+            "cvss_severity": "HIGH",
+            "cvss_vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H",
+            "cvss_version": "3.1",
+            "published": "2021-09-26T19:15:07.263",
+            "last_modified": "2024-11-21T06:26:32.077",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-41617"
+          },
+          {
+            "id": "CVE-2021-36368",
+            "description": "An issue was discovered in OpenSSH before 8.9. If a client is using public-key authentication with agent forwarding but without -oLogLevel=verbose, and an attacker has silently modified the server to support the None authentication option, then the user cannot determine whether FIDO authentication is going to confirm that the user wishes to connect to that server, or that the user wishes to allow that server to connect to a different server on the user's behalf. NOTE: the vendor's position is \"this is not an authentication bypass, since nothing is being bypassed.",
+            "cvss_score": 3.7,
+            "cvss_severity": "LOW",
+            "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N",
+            "cvss_version": "3.1",
+            "published": "2022-03-13T00:15:07.937",
+            "last_modified": "2024-11-21T06:13:36.983",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-36368"
+          },
+          {
+            "id": "CVE-2023-38408",
+            "description": "The PKCS#11 feature in ssh-agent in OpenSSH before 9.3p2 has an insufficiently trustworthy search path, leading to remote code execution if an agent is forwarded to an attacker-controlled system. (Code in /usr/lib is not necessarily safe for loading into ssh-agent.) NOTE: this issue exists because of an incomplete fix for CVE-2016-10009.",
+            "cvss_score": 9.8,
+            "cvss_severity": "CRITICAL",
+            "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+            "cvss_version": "3.1",
+            "published": "2023-07-20T03:15:10.170",
+            "last_modified": "2024-11-21T08:13:30.520",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-38408"
+          },
+          {
+            "id": "CVE-2023-48795",
+            "description": "The SSH transport protocol with certain OpenSSH extensions, found in OpenSSH before 9.6 and other products, allows remote attackers to bypass integrity checks such that some packets are omitted (from the extension negotiation message), and a client and server may consequently end up with a connection for which some security features have been downgraded or disabled, aka a Terrapin attack. This occurs because the SSH Binary Packet Protocol (BPP), implemented by these extensions, mishandles the handshake phase and mishandles use of sequence numbers. For example, there is an effective attack against SSH's use of ChaCha20-Poly1305 (and CBC with Encrypt-then-MAC). The bypass occurs in chacha20-poly1305@openssh.com and (if CBC is used) the -etm@openssh.com MAC algorithms. This also affects Maverick Synergy Java SSH API before 3.1.0-SNAPSHOT, Dropbear through 2022.83, Ssh before 5.1.1 in Erlang/OTP, PuTTY before 0.80, AsyncSSH before 2.14.2, golang.org/x/crypto before 0.17.0, libssh before 0.10.6, libssh2 through 1.11.0, Thorn Tech SFTP Gateway before 3.4.6, Tera Term before 5.1, Paramiko before 3.4.0, jsch before 0.2.15, SFTPGo before 2.5.6, Netgate pfSense Plus through 23.09.1, Netgate pfSense CE through 2.7.2, HPN-SSH through 18.2.0, ProFTPD before 1.3.8b (and before 1.3.9rc2), ORYX CycloneSSH before 2.3.4, NetSarang XShell 7 before Build 0144, CrushFTP before 10.6.0, ConnectBot SSH library before 2.2.22, Apache MINA sshd through 2.11.0, sshj through 0.37.0, TinySSH through 20230101, trilead-ssh2 6401, LANCOM LCOS and LANconfig, FileZilla before 3.66.4, Nova before 11.8, PKIX-SSH before 14.4, SecureCRT before 9.4.3, Transmit5 before 5.10.4, Win32-OpenSSH before 9.5.0.0p1-Beta, WinSCP before 6.2.2, Bitvise SSH Server before 9.32, Bitvise SSH Client before 9.33, KiTTY through 0.76.1.13, the net-ssh gem 7.2.0 for Ruby, the mscdex ssh2 module before 1.15.0 for Node.js, the thrussh library before 0.35.1 for Rust, and the Russh crate before 0.40.2 for Rust.",
+            "cvss_score": 5.9,
+            "cvss_severity": "MEDIUM",
+            "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N",
+            "cvss_version": "3.1",
+            "published": "2023-12-18T16:15:10.897",
+            "last_modified": "2025-11-04T22:15:55.110",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-48795"
+          },
+          {
+            "id": "CVE-2023-51385",
+            "description": "In ssh in OpenSSH before 9.6, OS command injection might occur if a user name or host name has shell metacharacters, and this name is referenced by an expansion token in certain situations. For example, an untrusted Git repository can have a submodule with shell metacharacters in a user name or host name.",
+            "cvss_score": 6.5,
+            "cvss_severity": "MEDIUM",
+            "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
+            "cvss_version": "3.1",
+            "published": "2023-12-18T19:15:08.773",
+            "last_modified": "2025-12-18T15:15:49.263",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-51385"
+          },
+          {
+            "id": "CVE-2023-51767",
+            "description": "OpenSSH through 10.0, when common types of DRAM are used, might allow row hammer attacks (for authentication bypass) because the integer value of authenticated in mm_answer_authpassword does not resist flips of a single bit. NOTE: this is applicable to a certain threat model of attacker-victim co-location in which the attacker has user privileges. NOTE: this is disputed by the Supplier, who states \"we do not consider it to be the application's responsibility to defend against platform architectural weaknesses.\"",
+            "cvss_score": 7.0,
+            "cvss_severity": "HIGH",
+            "cvss_vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H",
+            "cvss_version": "3.1",
+            "published": "2023-12-24T07:15:07.410",
+            "last_modified": "2025-11-18T22:15:43.950",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-51767"
+          },
+          {
+            "id": "CVE-2025-26465",
+            "description": "A vulnerability was found in OpenSSH when the VerifyHostKeyDNS option is enabled. A machine-in-the-middle attack can be performed by a malicious machine impersonating a legit server. This issue occurs due to how OpenSSH mishandles error codes in specific conditions when verifying the host key. For an attack to be considered successful, the attacker needs to manage to exhaust the client's memory resource first, turning the attack complexity high.",
+            "cvss_score": 6.8,
+            "cvss_severity": "MEDIUM",
+            "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:N",
+            "cvss_version": "3.1",
+            "published": "2025-02-18T19:15:29.230",
+            "last_modified": "2025-11-03T22:18:41.727",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-26465"
+          },
+          {
+            "id": "CVE-2025-32728",
+            "description": "In sshd in OpenSSH before 10.0, the DisableForwarding directive does not adhere to the documentation stating that it disables X11 and agent forwarding.",
+            "cvss_score": 4.3,
+            "cvss_severity": "MEDIUM",
+            "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:C/C:N/I:L/A:N",
+            "cvss_version": "3.1",
+            "published": "2025-04-10T02:15:30.873",
+            "last_modified": "2025-05-22T16:51:54.890",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-32728"
+          }
+        ],
+        "cached": false
+      },
+      "risk_assessment": {
+        "risk_score": 72,
+        "risk_level": "High",
+        "confidence": "High",
+        "factors": {
+          "cve_count": {
+            "count": 19,
+            "points": 20,
+            "weight": "30%"
+          },
+          "cvss_severity": {
+            "critical": 2,
+            "high": 3,
+            "medium": 13,
+            "low": 1,
+            "points": 50,
+            "weight": "50%"
+          },
+          "validation": {
+            "status": "validated",
+            "penalty": 0,
+            "weight": "10%"
+          },
+          "device_exposure": {
+            "type": "SSH",
+            "points": 2,
+            "weight": "10%"
+          }
+        }
+      },
+      "recommendations": [
+        "\u26a0\ufe0f URGENT: 2 critical vulnerabilities detected - patch immediately or isolate device",
+        "\u26a0\ufe0f 3 high-severity vulnerabilities - update firmware/software as soon as possible",
+        "SSH service exposed - disable password authentication and use key-based auth only",
+        "Consider network segmentation to isolate high-risk devices",
+        "Enable automatic security updates if supported"
+      ]
+    },
+    {
+      "ip": "172.20.0.35",
+      "status": "up",
+      "hostname": null,
+      "mac": "00:03:93:12:34:56",
+      "identity": {
+        "mdns_name": "Apple TV._airplay._tcp.local.",
+        "service_type": "_airplay._tcp.local.",
+        "vendor": "Apple",
+        "model": "Apple TV",
+        "version": "11.0",
+        "id": "Unknown",
+        "detection_method": "mDNS",
+        "all_properties": {
+          "model": "AppleTV5,3",
+          "osvers": "11.0",
+          "srcvers": "220.68",
+          "features": "0x5A7FFFF7,0xE"
+        }
+      },
+      "cpe_suggestion": "cpe:2.3:a:apple:apple_tv:11.0:*:*:*:*:*:*:*",
+      "cpe_validation_status": "validated",
+      "cve_results": {
+        "cpe": "cpe:2.3:a:apple:apple_tv:11.0:*:*:*:*:*:*:*",
+        "cve_count": 25,
+        "cves": [
+          {
+            "id": "CVE-2018-4082",
+            "description": "An issue was discovered in certain Apple products. iOS before 11.2.5 is affected. macOS before 10.13.3 is affected. tvOS before 11.2.5 is affected. watchOS before 4.2.2 is affected. The issue involves the \"Kernel\" component. It allows attackers to execute arbitrary code in a privileged context or cause a denial of service (memory corruption) via a crafted app.",
+            "cvss_score": 7.8,
+            "cvss_severity": "HIGH",
+            "cvss_vector": "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+            "cvss_version": "3.0",
+            "published": "2018-04-03T06:29:02.827",
+            "last_modified": "2024-11-21T04:06:42.440",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-4082"
+          },
+          {
+            "id": "CVE-2018-4085",
+            "description": "An issue was discovered in certain Apple products. iOS before 11.2.5 is affected. macOS before 10.13.3 is affected. tvOS before 11.2.5 is affected. watchOS before 4.2.2 is affected. The issue involves the \"QuartzCore\" component. It allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site.",
+            "cvss_score": 8.8,
+            "cvss_severity": "HIGH",
+            "cvss_vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+            "cvss_version": "3.0",
+            "published": "2018-04-03T06:29:02.983",
+            "last_modified": "2024-11-21T04:06:42.990",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-4085"
+          },
+          {
+            "id": "CVE-2018-4086",
+            "description": "An issue was discovered in certain Apple products. iOS before 11.2.5 is affected. macOS before 10.13.3 is affected. tvOS before 11.2.5 is affected. watchOS before 4.2.2 is affected. The issue involves the \"Security\" component. It allows remote attackers to spoof certificate validation via crafted name constraints.",
+            "cvss_score": 5.9,
+            "cvss_severity": "MEDIUM",
+            "cvss_vector": "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N",
+            "cvss_version": "3.0",
+            "published": "2018-04-03T06:29:03.063",
+            "last_modified": "2024-11-21T04:06:43.173",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-4086"
+          },
+          {
+            "id": "CVE-2018-4087",
+            "description": "An issue was discovered in certain Apple products. iOS before 11.2.5 is affected. tvOS before 11.2.5 is affected. watchOS before 4.2.2 is affected. The issue involves the \"Core Bluetooth\" component. It allows attackers to execute arbitrary code in a privileged context or cause a denial of service (memory corruption) via a crafted app.",
+            "cvss_score": 7.8,
+            "cvss_severity": "HIGH",
+            "cvss_vector": "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+            "cvss_version": "3.0",
+            "published": "2018-04-03T06:29:03.140",
+            "last_modified": "2024-11-21T04:06:43.357",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-4087"
+          },
+          {
+            "id": "CVE-2018-4088",
+            "description": "An issue was discovered in certain Apple products. iOS before 11.2.5 is affected. macOS before 10.13.3 is affected. Safari before 11.0.3 is affected. iCloud before 7.3 on Windows is affected. iTunes before 12.7.3 on Windows is affected. tvOS before 11.2.5 is affected. watchOS before 4.2.2 is affected. The issue involves the \"WebKit\" component. It allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site.",
+            "cvss_score": 8.8,
+            "cvss_severity": "HIGH",
+            "cvss_vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+            "cvss_version": "3.0",
+            "published": "2018-04-03T06:29:03.203",
+            "last_modified": "2024-11-21T04:06:43.533",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-4088"
+          },
+          {
+            "id": "CVE-2018-4089",
+            "description": "An issue was discovered in certain Apple products. iOS before 11.2.5 is affected. macOS before 10.13.3 is affected. Safari before 11.0.3 is affected. tvOS before 11.2.5 is affected. The issue involves the \"WebKit\" component. It allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site.",
+            "cvss_score": 8.8,
+            "cvss_severity": "HIGH",
+            "cvss_vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+            "cvss_version": "3.0",
+            "published": "2018-04-03T06:29:03.280",
+            "last_modified": "2024-11-21T04:06:43.730",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-4089"
+          },
+          {
+            "id": "CVE-2018-4090",
+            "description": "An issue was discovered in certain Apple products. iOS before 11.2.5 is affected. macOS before 10.13.3 is affected. tvOS before 11.2.5 is affected. watchOS before 4.2.2 is affected. The issue involves the \"Kernel\" component. It allows attackers to bypass intended memory-read restrictions via a crafted app.",
+            "cvss_score": 5.5,
+            "cvss_severity": "MEDIUM",
+            "cvss_vector": "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N",
+            "cvss_version": "3.0",
+            "published": "2018-04-03T06:29:03.360",
+            "last_modified": "2024-11-21T04:06:43.910",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-4090"
+          },
+          {
+            "id": "CVE-2018-4092",
+            "description": "An issue was discovered in certain Apple products. iOS before 11.2.5 is affected. macOS before 10.13.3 is affected. tvOS before 11.2.5 is affected. watchOS before 4.2.2 is affected. The issue involves the \"Kernel\" component. A race condition allows attackers to bypass intended memory-read restrictions via a crafted app.",
+            "cvss_score": 4.7,
+            "cvss_severity": "MEDIUM",
+            "cvss_vector": "CVSS:3.0/AV:L/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N",
+            "cvss_version": "3.0",
+            "published": "2018-04-03T06:29:03.453",
+            "last_modified": "2024-11-21T04:06:45.047",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-4092"
+          },
+          {
+            "id": "CVE-2018-4093",
+            "description": "An issue was discovered in certain Apple products. iOS before 11.2.5 is affected. macOS before 10.13.3 is affected. tvOS before 11.2.5 is affected. watchOS before 4.2.2 is affected. The issue involves the \"Kernel\" component. It allows attackers to bypass intended memory-read restrictions via a crafted app.",
+            "cvss_score": 5.5,
+            "cvss_severity": "MEDIUM",
+            "cvss_vector": "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N",
+            "cvss_version": "3.0",
+            "published": "2018-04-03T06:29:03.517",
+            "last_modified": "2024-11-21T04:06:45.167",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-4093"
+          },
+          {
+            "id": "CVE-2018-4094",
+            "description": "An issue was discovered in certain Apple products. iOS before 11.2.5 is affected. macOS before 10.13.3 is affected. tvOS before 11.2.5 is affected. watchOS before 4.2.2 is affected. The issue involves the \"Audio\" component. It allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted audio file.",
+            "cvss_score": 7.8,
+            "cvss_severity": "HIGH",
+            "cvss_vector": "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+            "cvss_version": "3.0",
+            "published": "2018-04-03T06:29:03.610",
+            "last_modified": "2024-11-21T04:06:45.287",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-4094"
+          },
+          {
+            "id": "CVE-2018-4095",
+            "description": "An issue was discovered in certain Apple products. iOS before 11.2.5 is affected. tvOS before 11.2.5 is affected. watchOS before 4.2.2 is affected. The issue involves the \"Core Bluetooth\" component. It allows attackers to execute arbitrary code in a privileged context or cause a denial of service (memory corruption) via a crafted app.",
+            "cvss_score": 7.8,
+            "cvss_severity": "HIGH",
+            "cvss_vector": "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+            "cvss_version": "3.0",
+            "published": "2018-04-03T06:29:03.670",
+            "last_modified": "2024-11-21T04:06:45.410",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-4095"
+          },
+          {
+            "id": "CVE-2018-4096",
+            "description": "An issue was discovered in certain Apple products. iOS before 11.2.5 is affected. macOS before 10.13.3 is affected. Safari before 11.0.3 is affected. iCloud before 7.3 on Windows is affected. iTunes before 12.7.3 on Windows is affected. tvOS before 11.2.5 is affected. watchOS before 4.2.2 is affected. The issue involves the \"WebKit\" component. It allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site.",
+            "cvss_score": 8.8,
+            "cvss_severity": "HIGH",
+            "cvss_vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+            "cvss_version": "3.0",
+            "published": "2018-04-03T06:29:03.750",
+            "last_modified": "2024-11-21T04:06:45.530",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-4096"
+          },
+          {
+            "id": "CVE-2018-4109",
+            "description": "An issue was discovered in certain Apple products. iOS before 11.2.5 is affected. tvOS before 11.2.5 is affected. watchOS before 4.2.2 is affected. The issue involves the \"Graphics Driver\" component. It allows attackers to execute arbitrary code in a privileged context or cause a denial of service (memory corruption) via a crafted app.",
+            "cvss_score": 7.8,
+            "cvss_severity": "HIGH",
+            "cvss_vector": "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+            "cvss_version": "3.0",
+            "published": "2018-04-03T06:29:04.437",
+            "last_modified": "2024-11-21T04:06:46.873",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-4109"
+          },
+          {
+            "id": "CVE-2018-4188",
+            "description": "An issue was discovered in certain Apple products. iOS before 11.4 is affected. Safari before 11.1.1 is affected. iCloud before 7.5 on Windows is affected. iTunes before 12.7.5 on Windows is affected. tvOS before 11.4 is affected. The issue involves the \"WebKit\" component. It allows remote attackers to spoof the address bar via a crafted web site.",
+            "cvss_score": 6.5,
+            "cvss_severity": "MEDIUM",
+            "cvss_vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N",
+            "cvss_version": "3.0",
+            "published": "2018-06-08T18:29:00.413",
+            "last_modified": "2024-11-21T04:06:55.983",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-4188"
+          },
+          {
+            "id": "CVE-2018-4198",
+            "description": "An issue was discovered in certain Apple products. iOS before 11.4 is affected. macOS before 10.13.5 is affected. tvOS before 11.4 is affected. watchOS before 4.3.1 is affected. The issue involves the \"UIKit\" component. It allows remote attackers to cause a denial of service via a crafted text file.",
+            "cvss_score": 5.5,
+            "cvss_severity": "MEDIUM",
+            "cvss_vector": "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+            "cvss_version": "3.0",
+            "published": "2018-06-08T18:29:00.697",
+            "last_modified": "2024-11-21T04:06:57.213",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-4198"
+          },
+          {
+            "id": "CVE-2018-4206",
+            "description": "An issue was discovered in certain Apple products. iOS before 11.3.1 is affected. macOS before 10.13.4 Security Update 2018-001 is affected. tvOS before 11.4 is affected. watchOS before 4.3.1 is affected. The issue involves the \"Crash Reporter\" component. It allows attackers to execute arbitrary code or cause a denial of service (memory corruption) via a crafted app that replaces a privileged port name.",
+            "cvss_score": 7.8,
+            "cvss_severity": "HIGH",
+            "cvss_vector": "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+            "cvss_version": "3.0",
+            "published": "2018-06-08T18:29:01.087",
+            "last_modified": "2024-11-21T04:06:58.173",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-4206"
+          },
+          {
+            "id": "CVE-2018-4211",
+            "description": "An issue was discovered in certain Apple products. iOS before 11.4 is affected. macOS before 10.13.5 is affected. tvOS before 11.4 is affected. watchOS before 4.3.1 is affected. The issue involves the \"FontParser\" component. It allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted font file.",
+            "cvss_score": 7.8,
+            "cvss_severity": "HIGH",
+            "cvss_vector": "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+            "cvss_version": "3.0",
+            "published": "2018-06-08T18:29:01.133",
+            "last_modified": "2024-11-21T04:06:58.800",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-4211"
+          },
+          {
+            "id": "CVE-2018-4223",
+            "description": "An issue was discovered in certain Apple products. iOS before 11.4 is affected. macOS before 10.13.5 is affected. tvOS before 11.4 is affected. watchOS before 4.3.1 is affected. The issue involves the \"Security\" component. It allows local users to bypass intended restrictions on the reading of a persistent account identifier.",
+            "cvss_score": 5.5,
+            "cvss_severity": "MEDIUM",
+            "cvss_vector": "CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+            "cvss_version": "3.0",
+            "published": "2018-06-08T18:29:01.557",
+            "last_modified": "2024-11-21T04:07:00.237",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-4223"
+          },
+          {
+            "id": "CVE-2018-4224",
+            "description": "An issue was discovered in certain Apple products. iOS before 11.4 is affected. macOS before 10.13.5 is affected. iCloud before 7.5 on Windows is affected. iTunes before 12.7.5 on Windows is affected. tvOS before 11.4 is affected. watchOS before 4.3.1 is affected. The issue involves the \"Security\" component. It allows local users to bypass intended restrictions on the reading of a persistent device identifier.",
+            "cvss_score": 5.5,
+            "cvss_severity": "MEDIUM",
+            "cvss_vector": "CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+            "cvss_version": "3.0",
+            "published": "2018-06-08T18:29:01.617",
+            "last_modified": "2024-11-21T04:07:00.360",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-4224"
+          },
+          {
+            "id": "CVE-2018-4235",
+            "description": "An issue was discovered in certain Apple products. iOS before 11.4 is affected. macOS before 10.13.5 is affected. tvOS before 11.4 is affected. watchOS before 4.3.1 is affected. The issue involves the \"Messages\" component. It allows local users to perform impersonation attacks via an unspecified injection.",
+            "cvss_score": 5.5,
+            "cvss_severity": "MEDIUM",
+            "cvss_vector": "CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:N",
+            "cvss_version": "3.0",
+            "published": "2018-06-08T18:29:02.133",
+            "last_modified": "2024-11-21T04:07:01.757",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-4235"
+          },
+          {
+            "id": "CVE-2018-4241",
+            "description": "An issue was discovered in certain Apple products. iOS before 11.4 is affected. macOS before 10.13.5 is affected. tvOS before 11.4 is affected. watchOS before 4.3.1 is affected. The issue involves the \"Kernel\" component. A buffer overflow in mptcp_usr_connectx allows attackers to execute arbitrary code in a privileged context via a crafted app.",
+            "cvss_score": 7.8,
+            "cvss_severity": "HIGH",
+            "cvss_vector": "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+            "cvss_version": "3.0",
+            "published": "2018-06-08T18:29:02.447",
+            "last_modified": "2024-11-21T04:07:02.407",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-4241"
+          },
+          {
+            "id": "CVE-2018-4243",
+            "description": "An issue was discovered in certain Apple products. iOS before 11.4 is affected. macOS before 10.13.5 is affected. tvOS before 11.4 is affected. watchOS before 4.3.1 is affected. The issue involves the \"Kernel\" component. A buffer overflow in getvolattrlist allows attackers to execute arbitrary code in a privileged context via a crafted app.",
+            "cvss_score": 7.8,
+            "cvss_severity": "HIGH",
+            "cvss_vector": "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+            "cvss_version": "3.0",
+            "published": "2018-06-08T18:29:02.540",
+            "last_modified": "2024-11-21T04:07:02.640",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-4243"
+          },
+          {
+            "id": "CVE-2018-4249",
+            "description": "An issue was discovered in certain Apple products. iOS before 11.4 is affected. macOS before 10.13.5 is affected. tvOS before 11.4 is affected. watchOS before 4.3.1 is affected. The issue involves pktmnglr_ipfilter_input in com.apple.packet-mangler in the \"Kernel\" component. It allows attackers to execute arbitrary code in a privileged context or cause a denial of service (integer overflow and stack-based buffer overflow) via a crafted app.",
+            "cvss_score": 7.8,
+            "cvss_severity": "HIGH",
+            "cvss_vector": "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+            "cvss_version": "3.0",
+            "published": "2018-06-08T18:29:02.743",
+            "last_modified": "2024-11-21T04:07:03.227",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-4249"
+          },
+          {
+            "id": "CVE-2018-4189",
+            "description": "In iOS before 11.2.5, macOS High Sierra before 10.13.3, Security Update 2018-001 Sierra, and Security Update 2018-001 El Capitan, watchOS before 4.2.2, and tvOS before 11.2.5, a memory corruption issue exists and was addressed with improved memory handling.",
+            "cvss_score": 9.8,
+            "cvss_severity": "CRITICAL",
+            "cvss_vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+            "cvss_version": "3.0",
+            "published": "2019-01-11T18:29:01.327",
+            "last_modified": "2024-11-21T04:06:56.137",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-4189"
+          },
+          {
+            "id": "CVE-2018-4298",
+            "description": "In macOS High Sierra before 10.13.3, Security Update 2018-001 Sierra, and Security Update 2018-001 El Capitan, a permissions issue existed in Remote Management. This issue was addressed through improved permission validation.",
+            "cvss_score": 9.8,
+            "cvss_severity": "CRITICAL",
+            "cvss_vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+            "cvss_version": "3.0",
+            "published": "2019-01-11T18:29:03.063",
+            "last_modified": "2024-11-21T04:07:08.840",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-4298"
+          }
+        ],
+        "cached": false
+      },
+      "risk_assessment": {
+        "risk_score": 84,
+        "risk_level": "Critical",
+        "confidence": "High",
+        "factors": {
+          "cve_count": {
+            "count": 25,
+            "points": 30,
+            "weight": "30%"
+          },
+          "cvss_severity": {
+            "critical": 2,
+            "high": 14,
+            "medium": 9,
+            "low": 0,
+            "points": 50,
+            "weight": "50%"
+          },
+          "validation": {
+            "status": "validated",
+            "penalty": 0,
+            "weight": "10%"
+          },
+          "device_exposure": {
+            "type": "mDNS",
+            "points": 4,
+            "weight": "10%"
+          }
+        }
+      },
+      "recommendations": [
+        "\u26a0\ufe0f URGENT: 2 critical vulnerabilities detected - patch immediately or isolate device",
+        "\u26a0\ufe0f 14 high-severity vulnerabilities - update firmware/software as soon as possible",
+        "Consider network segmentation to isolate high-risk devices",
+        "Enable automatic security updates if supported"
+      ]
+    },
+    {
+      "ip": "172.20.0.50",
+      "status": "up",
+      "hostname": null,
+      "mac": null,
+      "identity": null,
+      "cve_results": {
+        "cve_count": 0,
+        "cves": []
+      },
+      "risk_assessment": {
+        "risk_score": 0,
+        "risk_level": "Unknown",
+        "confidence": "Low",
+        "factors": {}
+      },
+      "recommendations": []
+    }
+  ]
+}

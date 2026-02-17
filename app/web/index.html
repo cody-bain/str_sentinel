@@ -4,11 +4,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>STR Sentinel - Security Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
 </head>
 
 <body>
+    <!-- Header -->
+    <div class="header">
+        <div class="container">
+            <h1>🛡️ STR Sentinel</h1>
+            <p>IoT Security Assessment Dashboard</p>
+        </div>
+    </div>
 
+    <!-- Main Content -->
+    <div class="container">
+        <div id="dashboard-content">
+            <!-- Scan Info -->
+            <div id="scan-info" class="scan-info"></div>
+
+            <!-- Network Summary -->
+            <section id="network-summary" class="summary-grid"></section>
+
+            <!-- Devices Table -->
+            <section class="devices-section">
+                <h2>Discovered Devices</h2>
+                <div id="devices-table"></div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Device Details Modal -->
+    <div id="device-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <div id="modal-device-content"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
 </body>
 
 </html>

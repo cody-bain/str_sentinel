@@ -2,6 +2,8 @@
 
 **Cody Bain | Georgia Tech PUBP 6727**
 
+*GitHub Copilot AI tools were leveraged in generating sections of code for my project. All AI generated code has thoroughly reviewed, understood, and improved upon to achieve desired tool performance.*
+
 An automated IoT security scanner for short-term rental (STR) properties that discovers network devices, identifies vulnerabilities, and generates actionable security reports.
 
 ---
@@ -24,8 +26,10 @@ STR Sentinel performs automated security assessments of IoT devices in rental pr
 │  Phase 1: Network Discovery (nmap)                  │
 │  Phase 2: Protocol Fingerprinting (mDNS/HTTP/SSH)   │
 │  Phase 3: CPE Matching & CVE Lookup (NVD)           │
-│  Phase 4: Risk Scoring & Reporting                  │
+│  Phase 4: Risk Scoring & Web Dashboard              │
 └─────────────────────────────────────────────────────┘
+              ↓
+   Security Reports & Remediation Guidance
 ```
 
 ---
@@ -35,13 +39,52 @@ STR Sentinel performs automated security assessments of IoT devices in rental pr
 ### Prerequisites
 - Docker & Docker Compose
 - Python 3.11+ (for local development)
+- NVD API Key (optional, but recommended for faster CVE lookups)
 
-### Running the Simulation Environment
+### Quick Start Guide
 
-Start Simulated Environment:
-
+#### 1. Start Simulation Environment
 ```bash
-docker-compose -f simulation/docker-compose.yml up -d --build
+cd simulation
+docker-compose up -d --build
+```
+
+#### 2. Download CPE Database (One-Time Setup)
+```bash
+docker exec -it str_sentinel_app python download_cpe_database.py
+```
+*Downloads complete NVD CPE dictionary (~456MB). Takes 10-30 minutes. Only needed once or for periodic updates.*
+
+#### 3. Run Network Scan
+```bash
+# Scan with default subnet and save results
+docker exec -it str_sentinel_app python main.py --output shared/discovery-scan.json
+```
+
+#### 4. Start Web Dashboard
+```bash
+# Run dashboard server (foreground)
+docker exec -it str_sentinel_app python web_server.py
+
+# Or run in background
+docker exec -d str_sentinel_app python web_server.py
+```
+*Note: Dashboard runs on port 5001
+
+#### 5. View Security Dashboard
+Open your browser and navigate to: **http://localhost:5001**
+
+The dashboard displays:
+- Network-wide risk assessment
+- Device inventory with CVE counts
+- CVSS-based risk scores
+- Detailed vulnerability information
+- Remediation recommendations
+
+#### 6. Stop Environment
+```bash
+cd simulation
+docker-compose down
 ```
 
 ### Simulated Network Environment
@@ -54,22 +97,18 @@ The testing environment includes three simulated IoT devices on an isolated Dock
 | Network Device (OpenSSH 7.6p1) | 172.20.0.20 | SSH (22) | 00:1E:14 (Cisco Systems) |
 | Apple TV (11.0) | 172.20.0.35 | mDNS (AirPlay) | 00:03:93 (Apple) |
 
-### Running a Discovery Scan
-
-Execute a network scan from the Sentinel container:
+### Additional Commands
 
 ```bash
-# Run with default docker subnet (172.20.0.0/24), output file, and log file
-docker exec -it str_sentinel_app python main.py --output shared/discovery-scan.json 
+# Scan a custom subnet
+docker exec -it str_sentinel_app python main.py 192.168.1.0/24
 
-# Specify a custom subnet
-docker exec -it str_sentinel_app python main.py --subnet 192.168.1.0/24
-
-# With optional output file
+# Save to custom output file (also updates dashboard)
 docker exec -it str_sentinel_app python main.py --output custom-scan.json
-```
 
-Scan results are saved to `app/shared/discovery-scan.json`
+# View logs during scan
+docker logs -f str_sentinel_app
+```
 
 ---
 
@@ -78,18 +117,32 @@ Scan results are saved to `app/shared/discovery-scan.json`
 ```
 str_sentinel/
 ├── app/
-│   ├── main.py                    # Primary discovery orchestrator
+│   ├── main.py                       # Primary discovery orchestrator
+│   ├── cpe_validator.py              # CPE validation & fuzzy matching
+│   ├── cve_lookup.py                 # NVD CVE API integration
+│   ├── risk_scoring.py               # CVSS-based risk assessment
+│   ├── web_server.py                 # Flask dashboard server
+│   ├── download_cpe_database.py      # CPE database downloader
 │   ├── protocol_handlers/
-│   │   ├── mdns_handler.py        # mDNS device identification
-│   │   ├── http_handler.py        # HTTP fingerprinting via Recog
-│   │   └── ssh_handler.py         # SSH banner fingerprinting via Recog
+│   │   ├── mdns_handler.py           # mDNS device identification
+│   │   ├── http_handler.py           # HTTP fingerprinting via Recog
+│   │   └── ssh_handler.py            # SSH banner fingerprinting via Recog
+│   ├── web/
+│   │   ├── index.html                # Dashboard UI template
+│   │   └── static/
+│   │       ├── dashboard.css         # Dashboard styles
+│   │       └── dashboard.js          # Dashboard frontend logic
 │   ├── shared/
-│   │   └── discovery-scan.json    # Scan results output
+│   │   ├── discovery-scan.json       # Scan results output
+│   │   └── cpe_dictionary.json       # Local CPE database (456MB, gitignored)
 │   ├── requirements.txt
-│   └── Dockerfile                 # Includes Ruby + Recog gem
+│   └── Dockerfile                    # Includes Ruby + Recog gem
 ├── simulation/
-│   ├── docker-compose.yml         # Simulation environment
-│   └── nest.service               # Avahi mDNS configuration
+│   ├── docker-compose.yml            # Simulation environment
+│   └── nest.service                  # Avahi mDNS configuration
+├── test/
+│   ├── evaluate_cpe_matching.py      # CPE validation testing
+│   └── generate_test_devices.py      # Test device generator
 └── README.md
 ```
 
@@ -129,18 +182,61 @@ str_sentinel/
   - API key support with rate limiting
 - ✅ **Validation Testing: 95% accuracy on 100 diverse devices**
 
-### Phase 4: Reporting - PLANNED
-- CVSS-based risk scoring algorithm
-- Vulnerability report generation
-- Web-based dashboard for scan results visualization
-- PDF report generation with executive summary for both guests and hosts
-- Network topology visualization
-- Remediation recommendations engine
-- Web dashboard
-- PDF report generation
+### Phase 4: Reporting - COMPLETE
+- ✅ CVSS-based risk scoring algorithm
+  - Multi-factor scoring: CVE count, severity, validation status, device exposure
+  - Network-wide risk assessment with confidence levels
+  - 0-100 risk scoring with Critical/High/Medium/Low/Minimal classifications
+- ✅ CVE Lookup Module
+  - NVD API integration with caching
+  - Automated vulnerability enumeration for validated CPEs
+  - CVSS v3.1/v3.0/v2.0 score extraction
+- ✅ Web-based dashboard (Flask)
+  - Real-time scan results visualization
+  - Interactive device inventory with drill-down details
+  - Network summary cards with risk metrics
+  - Color-coded severity indicators
+- ✅ Remediation recommendations engine
+  - Automated security guidance based on CVE severity
+  - Device-specific recommendations
+  - Best practice suggestions
+- 🔄 PDF report generation (Planned)
   - Host: Network Vulnerabilities + Legal Framework
   - Guest: Privacy & Information Security
 
+---
+
+## Web Dashboard
+
+The STR Sentinel dashboard provides real-time visualization of network security assessments at **http://localhost:5001**.
+
+### Features
+
+**Network Summary Cards:**
+- Overall network risk level with color-coded indicators
+- Total device count and devices at risk
+- Total CVE count across all devices
+- Severity breakdown (Critical/High/Medium/Low/Minimal)
+
+**Interactive Device Table:**
+- Device inventory with IP, MAC, vendor, and model information
+- CVE counts with severity breakdown per device
+- Individual risk scores (0-100) with confidence levels
+- Drill-down capability for detailed vulnerability information
+
+**Device Details Modal:**
+- Complete device identity (vendor, model, version, detection method)
+- Validated CPE string
+- Full CVE list with CVSS scores and severities
+- Direct links to NVD vulnerability database
+- Automated remediation recommendations
+- Risk factor breakdown
+
+**Dashboard API Endpoints:**
+- `/api/scan-results` - Complete scan data
+- `/api/network-summary` - Network-wide risk metrics
+- `/api/device/<ip>` - Individual device details
+- `/health` - Service health check
 
 ---
 
@@ -256,7 +352,28 @@ Devices that did not validate typically had:
 
 ## Work Log
 
-### Week of February 2 - February 8, 2026
+### Week of February 9 - February 15, 2026
+
+**Sunday, 2/15/26**
+
+- **Reporting & Web Dashboard:**
+  - **Flask Web Dashboard (`web_server.py`)** - Real-time security visualization
+    - Network summary cards with risk metrics
+    - Interactive device table with drill-down details
+    - CVE details modal with CVSS scores and NVD links
+    - REST API endpoints for scan results and device details
+  - **Dashboard UI** - Modern responsive interface with color-coded risk indicators
+  - **Pipeline Integration** - Updated `main.py` with Phases 5 & 6 (vulnerability analysis + report generation)
+  - **Testing** - Successfully validated with simulated network (5 devices, 48 CVEs detected)
+
+**Saturday, 2/14/26**
+
+* **Risk Reporting & Scoring:**
+  - **CVE Lookup Module (`cve_lookup.py`)** - NVD API integration with caching for vulnerability enumeration
+  - **Risk Scoring Engine (`risk_scoring.py`)** - CVSS-based multi-factor risk scoring (0-100 scale)
+    - Factors: CVE count (30%), CVSS severity (50%), validation status (10%), device exposure (10%)
+    - Network-wide risk assessment with confidence levels
+    - Automated remediation recommendations based on device vulnerabilities
 
 **Wednesday, 2/11/26**
 
@@ -278,6 +395,8 @@ Devices that did not validate typically had:
 - **Local CPE Database Implementation:**
   - Downloaded complete NVD CPE database (1,575,700 entries, 456MB)
   - Search performance: <1 second to query 1.5M CPEs vs 4+ minutes API pagination
+
+### Week of February 2 - February 8, 2026
 
 **Saturday, 2/7/26**
 

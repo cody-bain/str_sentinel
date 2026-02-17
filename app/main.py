@@ -5,12 +5,16 @@ import os
 import logging
 import json
 import re
+from datetime import datetime
 # Protocol Handlers
 from protocol_handlers.mdns_handler import run_mdns_scan
 from protocol_handlers.http_handler import run_http_scan
 from protocol_handlers.ssh_handler import run_ssh_scan
 # CPE Validation
 from cpe_validator import validate_cpe
+# CVE Lookup & Risk Scoring
+from cve_lookup import query_cves_for_cpe
+from risk_scoring import calculate_device_risk_score, calculate_network_risk_summary, generate_recommendations
 
 # Some code snippets developed with assistance from generative AI tools. All AI-generated content was reviewed, revised, and adapted to meet STR Sentinel requirements.
 
@@ -163,11 +167,78 @@ def run_discovery(target, output=None):
                         # Merge SSH data with existing identity
                         host['identity'].update(ssh_data[ip])
 
-        # --- PHASE 5: REPORTING (NEEDS DEVELOPMENT) ---
-        if output:
-            with open(output, 'w') as f:
-                json.dump(hosts_list, f, indent=2)
-            logging.info(f"Results written to {output}")
+        # --- PHASE 5: VULNERABILITY ANALYSIS & RISK SCORING ---
+        logging.info("[Phase 5] Analyzing vulnerabilities and calculating risk scores...")
+        
+        for host in hosts_list:
+            # Skip devices without validated CPE
+            if not host.get('cpe_suggestion'):
+                logging.debug(f"Skipping CVE lookup for {host['ip']} - no CPE")
+                host['cve_results'] = {'cve_count': 0, 'cves': []}
+                host['risk_assessment'] = {
+                    'risk_score': 0,
+                    'risk_level': 'Unknown',
+                    'confidence': 'Low',
+                    'factors': {}
+                }
+                host['recommendations'] = []
+                continue
+            
+            # Query NVD for CVEs
+            logging.info(f"Querying CVEs for {host['ip']} ({host['cpe_suggestion']})")
+            cve_results = query_cves_for_cpe(host['cpe_suggestion'], max_cves=100)
+            host['cve_results'] = cve_results
+            
+            # Calculate risk score
+            risk_assessment = calculate_device_risk_score(host)
+            host['risk_assessment'] = risk_assessment
+            
+            # Generate recommendations
+            recommendations = generate_recommendations(host)
+            host['recommendations'] = recommendations
+            
+            logging.info(f"--> {host['ip']}: {cve_results['cve_count']} CVEs, Risk: {risk_assessment['risk_level']} ({risk_assessment['risk_score']}/100)")
+
+        # --- PHASE 6: REPORT GENERATION ---
+        logging.info("[Phase 6] Generating security report...")
+        
+        # Calculate network-wide risk summary
+        network_summary = calculate_network_risk_summary(hosts_list)
+        
+        # Build final report structure for dashboard
+        report = {
+            'scan_info': {
+                'timestamp': datetime.utcnow().isoformat(),
+                'subnet': target,
+                'duration': None  # Could calculate if we track start time
+            },
+            'network_summary': network_summary,
+            'devices': hosts_list
+        }
+        
+        # Save to output file (or default to discovery-scan.json)
+        output_file = output if output else "/app/shared/discovery-scan.json"
+        with open(output_file, 'w') as f:
+            json.dump(report, f, indent=2)
+        logging.info(f"Report written to {output_file}")
+        
+        # If custom output was specified, also save to discovery-scan.json for dashboard
+        if output and output != "/app/shared/discovery-scan.json":
+            dashboard_output = "/app/shared/discovery-scan.json"
+            with open(dashboard_output, 'w') as f:
+                json.dump(report, f, indent=2)
+            logging.info(f"Dashboard data also saved to {dashboard_output}")
+        
+        # Print summary
+        logging.info("\n" + "="*60)
+        logging.info("SCAN SUMMARY")
+        logging.info("="*60)
+        logging.info(f"Total Devices: {network_summary['total_devices']}")
+        logging.info(f"Devices at Risk: {network_summary['devices_at_risk']}")
+        logging.info(f"Total CVEs: {network_summary['total_cves']}")
+        logging.info(f"Network Risk Level: {network_summary['network_risk_level']}")
+        logging.info(f"Average Risk Score: {network_summary['average_risk_score']}/100")
+        logging.info("="*60)
 
     except Exception as e:
         logging.error(f"Discovery failed: {e}")

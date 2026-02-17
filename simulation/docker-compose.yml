@@ -59,6 +59,8 @@ services:
     networks:
       str_simulation_net:
         ipv4_address: 172.20.0.50
+    ports:
+      - "5001:5001"      # Dashboard web interface
     volumes:
       - ../app:/app      # Syncs code so I can edit main.py without rebuilding
       - ../test:/test    # Test scripts and data
