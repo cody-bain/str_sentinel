@@ -2,13 +2,17 @@
 Generate 100 test devices from CPE database for validation testing
 Focus on IoT devices relevant to short-term rental properties
 """
+
 import json
 import random
 import sys
 import os
 from collections import defaultdict
 
-# Some code snippets developed with assistance from generative AI tools. All AI-generated content was reviewed, revised, and adapted to meet STR Sentinel requirements.
+'''
+CODE GENERATED WITH ASSISTANCE FROM VARIOUS AI TOOLS.
+ALL AI-GENERATED CONTENT WAS REVIEWED, REVISED, AND ADAPTED TO MEET STR SENTINEL REQUIREMENTS.
+'''
 
 # Add app directory to path for imports
 sys.path.insert(0, '/app')

@@ -1,5 +1,6 @@
-// STR Sentinel Dashboard JavaScript
-// Some code snippets developed with assistance from generative AI tools.
+// CODE GENERATED WITH ASSISTANCE FROM VARIOUS AI TOOLS.
+// ALL AI-GENERATED CONTENT WAS REVIEWED, REVISED, AND ADAPTED TO MEET STR SENTINEL REQUIREMENTS.
+
 
 let scanData = null;
 

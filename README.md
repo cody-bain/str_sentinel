@@ -2,7 +2,7 @@
 
 **Cody Bain | Georgia Tech PUBP 6727**
 
-*GitHub Copilot AI tools were leveraged in generating sections of code for my project. All AI generated code has thoroughly reviewed, understood, and improved upon to achieve desired tool performance.*
+*Various LLMs were leveraged in generating sections of code for my project. Usage is documented within all files where generated code was used. All AI generated code has thoroughly reviewed, understood, and improved upon to achieve desired tool performance per my criteria.*
 
 An automated IoT security scanner for short-term rental (STR) properties that discovers network devices, identifies vulnerabilities, and generates actionable security reports.
 

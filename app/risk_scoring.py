@@ -1,7 +1,10 @@
 import logging
 from datetime import datetime
 
-# Some code snippets developed with assistance from generative AI tools. All AI-generated content was reviewed, revised, and adapted to meet STR Sentinel requirements.
+'''
+CODE GENERATED WITH ASSISTANCE FROM VARIOUS AI TOOLS.
+ALL AI-GENERATED CONTENT WAS REVIEWED, REVISED, AND ADAPTED TO MEET STR SENTINEL REQUIREMENTS.
+'''
 
 def calculate_device_risk_score(device_data):
     """

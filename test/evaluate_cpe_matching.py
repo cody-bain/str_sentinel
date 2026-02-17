@@ -39,10 +39,10 @@ def query_cve_count(cpe):
             data = response.json()
             return data.get('totalResults', 0)
         else:
-            print(f"❌ CVE query failed for {cpe}: {response.status_code}")
+            print(f"CVE query failed for {cpe}: {response.status_code}")
             return None
     except Exception as e:
-        print(f"❌ CVE query error for {cpe}: {e}")
+        print(f"CVE query error for {cpe}: {e}")
         return None
 
 def run_validation_test():
@@ -54,9 +54,9 @@ def run_validation_test():
     
     devices = test_data['devices']
     
-    print(f"🧪 Starting CPE matching evaluation")
-    print(f"📊 Test dataset: {len(devices)} STR-relevant IoT devices")
-    print(f"⏱️  This will take ~{len(devices) * 0.6:.0f} seconds due to NVD API rate limits\n")
+    print(f"Starting CPE matching evaluation")
+    print(f"Test dataset: {len(devices)} STR-relevant IoT devices")
+    print(f"This will take ~{len(devices) * 0.6:.0f} seconds due to NVD API rate limits\n")
     
     # Track results
     results = []
@@ -202,28 +202,28 @@ def run_validation_test():
     
     # Print summary
     print(f"\n{'='*60}")
-    print(f"📊 CPE MATCHING EVALUATION RESULTS")
+    print(f"CPE MATCHING EVALUATION RESULTS")
     print(f"{'='*60}")
-    print(f"✅ Validation Rate: {validation_rate:.1f}% ({validation_passed}/{total} devices)")
-    print(f"🎯 Exact Match Rate: {exact_match_rate:.1f}% ({exact_matches}/{total} devices)")
-    print(f"🏢 Vendor Match Rate: {vendor_match_rate:.1f}% ({vendor_matches}/{total} devices)")
-    print(f"📦 Product Match Rate: {product_match_rate:.1f}% ({product_matches}/{total} devices)")
-    print(f"🔢 Version Match Rate: {version_match_rate:.1f}% ({version_matches}/{total} devices)")
-    print(f"\n🔒 CVE COVERAGE")
+    print(f"Validation Rate: {validation_rate:.1f}% ({validation_passed}/{total} devices)")
+    print(f"Exact Match Rate: {exact_match_rate:.1f}% ({exact_matches}/{total} devices)")
+    print(f"Vendor Match Rate: {vendor_match_rate:.1f}% ({vendor_matches}/{total} devices)")
+    print(f"Product Match Rate: {product_match_rate:.1f}% ({product_matches}/{total} devices)")
+    print(f"Version Match Rate: {version_match_rate:.1f}% ({version_matches}/{total} devices)")
+    print(f"\nCVE COVERAGE")
     print(f"{'='*60}")
     print(f"Total CVEs Found: {total_cves}")
     print(f"Devices with CVEs: {devices_with_cves}/{validation_passed} ({cve_coverage:.1f}%)")
     print(f"Average CVEs per device: {avg_cves:.1f}")
     if cve_counts:
         print(f"CVE range: {min(cve_counts)} - {max(cve_counts)}")
-    print(f"\n⏱️  Test Duration: {elapsed_time:.1f} seconds")
+    print(f"\nTest Duration: {elapsed_time:.1f} seconds")
     print(f"💾 Report saved to /test/cpe-matching-report.json")
     
     # Highlight most vulnerable devices
     vulnerable_devices = sorted([r for r in results if r.get('cve_count', 0) > 0], 
                                 key=lambda x: x.get('cve_count', 0), reverse=True)[:10]
     if vulnerable_devices:
-        print(f"\n🔴 TOP 10 MOST VULNERABLE DEVICES:")
+        print(f"\nTOP 10 MOST VULNERABLE DEVICES:")
         print(f"{'='*60}")
         for vd in vulnerable_devices:
             print(f"{vd['cve_count']:3d} CVEs - {vd['vendor']} {vd['model']} {vd['version']}")
@@ -231,7 +231,7 @@ def run_validation_test():
     # Highlight validation failures
     failed = [r for r in results if not r['validation_passed']]
     if failed:
-        print(f"\n❌ VALIDATION FAILURES ({len(failed)} devices):")
+        print(f"\nVALIDATION FAILURES ({len(failed)} devices):")
         print(f"{'='*60}")
         for fail in failed[:10]:  # Show first 10
             print(f"- {fail['vendor']} {fail['model']}: {fail['validation_status']}")

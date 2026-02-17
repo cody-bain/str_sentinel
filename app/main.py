@@ -16,7 +16,10 @@ from cpe_validator import validate_cpe
 from cve_lookup import query_cves_for_cpe
 from risk_scoring import calculate_device_risk_score, calculate_network_risk_summary, generate_recommendations
 
-# Some code snippets developed with assistance from generative AI tools. All AI-generated content was reviewed, revised, and adapted to meet STR Sentinel requirements.
+'''
+CODE GENERATED WITH ASSISTANCE FROM VARIOUS AI TOOLS.
+ALL AI-GENERATED CONTENT WAS REVIEWED, REVISED, AND ADAPTED TO MEET STR SENTINEL REQUIREMENTS.
+'''
 
 def generate_cpe(identity):
     '''

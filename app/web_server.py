@@ -4,7 +4,10 @@ import os
 import logging
 from datetime import datetime
 
-# Some code snippets developed with assistance from generative AI tools. All AI-generated content was reviewed, revised, and adapted to meet STR Sentinel requirements.
+'''
+CODE GENERATED WITH ASSISTANCE FROM VARIOUS AI TOOLS.
+ALL AI-GENERATED CONTENT WAS REVIEWED, REVISED, AND ADAPTED TO MEET STR SENTINEL REQUIREMENTS.
+'''
 
 app = Flask(__name__, 
             template_folder='web',

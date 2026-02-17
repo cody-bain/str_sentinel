@@ -3,7 +3,10 @@ import logging
 import subprocess
 import json
 
-# Some code snippets developed with assistance from generative AI tools. All AI-generated content was reviewed, revised, and adapted to meet STR Sentinel requirements.
+'''
+CODE GENERATED WITH ASSISTANCE FROM VARIOUS AI TOOLS.
+ALL AI-GENERATED CONTENT WAS REVIEWED, REVISED, AND ADAPTED TO MEET STR SENTINEL REQUIREMENTS.
+'''
 
 # Recog gem XML file location
 RECOG_SSH_FILE = '/var/lib/gems/3.3.0/gems/recog-3.1.25/recog/xml/ssh_banners.xml'

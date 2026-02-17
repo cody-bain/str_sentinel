@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+
+'''
+CODE GENERATED WITH ASSISTANCE FROM VARIOUS AI TOOLS.
+ALL AI-GENERATED CONTENT WAS REVIEWED, REVISED, AND ADAPTED TO MEET STR SENTINEL REQUIREMENTS.
+'''
+
 """
 Download complete CPE dictionary from NVD API for local searching.
 Run this once to cache all CPEs, then update periodically (weekly/monthly).
@@ -32,7 +38,7 @@ def download_all_cpes():
     start_index = 0
     results_per_page = 100
     
-    print(f"\n📥 Downloading CPE dictionary from NVD...", flush=True)
+    print(f"\nDownloading CPE dictionary from NVD...", flush=True)
     print(f"   Saving to: {OUTPUT_FILE}\n", flush=True)
     
     # First request to get total count
@@ -44,16 +50,16 @@ def download_all_cpes():
     try:
         response = requests.get(NVD_CPE_API, params=params, headers=headers, timeout=30)
         if response.status_code != 200:
-            print(f"❌ Error: API returned status {response.status_code}")
+            print(f"Error: API returned status {response.status_code}")
             return False
         
         data = response.json()
         total_results = data.get('totalResults', 0)
         total_pages = (total_results + results_per_page - 1) // results_per_page
         
-        print(f"📊 Total CPEs to download: {total_results:,}", flush=True)
-        print(f"📄 Total pages: {total_pages}", flush=True)
-        print(f"⏱️  Estimated time: {total_pages * (0.6 if NVD_API_KEY else 6) / 60:.1f} minutes\n", flush=True)
+        print(f"Total CPEs to download: {total_results:,}", flush=True)
+        print(f"Total pages: {total_pages}", flush=True)
+        print(f"Estimated time: {total_pages * (0.6 if NVD_API_KEY else 6) / 60:.1f} minutes\n", flush=True)
         
         # Process first page
         for item in data.get('products', []):
@@ -65,7 +71,7 @@ def download_all_cpes():
                 'deprecated': cpe_data.get('deprecated', False)
             })
         
-        print(f"✓ Page 1/{total_pages} - {len(all_cpes):,} CPEs", flush=True)
+        print(f"Page 1/{total_pages} - {len(all_cpes):,} CPEs", flush=True)
         
         # Download remaining pages
         start_index = results_per_page
@@ -109,7 +115,7 @@ def download_all_cpes():
                 break
         
         # Save to file
-        print(f"\n💾 Saving {len(all_cpes):,} CPEs to {OUTPUT_FILE}...", flush=True)
+        print(f"\nSaving {len(all_cpes):,} CPEs to {OUTPUT_FILE}...", flush=True)
         
         output_data = {
             'download_date': time.strftime('%Y-%m-%d %H:%M:%S'),
@@ -121,13 +127,13 @@ def download_all_cpes():
             json.dump(output_data, f, indent=2)
         
         file_size_mb = os.path.getsize(OUTPUT_FILE) / (1024 * 1024)
-        print(f"✅ Success! Downloaded {len(all_cpes):,} CPEs ({file_size_mb:.1f} MB)", flush=True)
+        print(f"Success! Downloaded {len(all_cpes):,} CPEs ({file_size_mb:.1f} MB)", flush=True)
         print(f"   File: {OUTPUT_FILE}", flush=True)
         
         return True
         
     except Exception as e:
-        print(f"❌ Error downloading CPEs: {e}")
+        print(f"Error downloading CPEs: {e}")
         return False
 
 
@@ -139,7 +145,7 @@ if __name__ == '__main__':
     success = download_all_cpes()
     
     if success:
-        print("\n🎉 CPE database ready for offline searching!")
+        print("\nCPE database ready for offline searching!")
         print("   Run scans normally - they will now use local database.\n")
     else:
-        print("\n❌ Download failed. Check your API key and connection.\n")
+        print("\nDownload failed. Check your API key and connection.\n")
