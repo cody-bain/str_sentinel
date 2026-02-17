@@ -4,6 +4,8 @@
 
 *Various LLMs were leveraged in generating sections of code for my project. Usage is documented within all files where generated code was used. All AI generated code has thoroughly reviewed, understood, and improved upon to achieve desired tool performance per my criteria.*
 
+*README.md is an AI summary of my work. I have manually gone back and polished the AI summary.*
+
 An automated IoT security scanner for short-term rental (STR) properties that discovers network devices, identifies vulnerabilities, and generates actionable security reports.
 
 ---
