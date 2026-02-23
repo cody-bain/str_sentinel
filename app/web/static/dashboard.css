@@ -410,3 +410,332 @@ body {
 .btn-danger:hover {
     background-color: #c0392b;
 }
+
+/* Tab Navigation */
+.tab-navigation {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+}
+
+.tab-btn:hover {
+    color: var(--primary-color);
+}
+
+.tab-btn.active {
+    color: var(--secondary-color);
+    border-bottom-color: var(--secondary-color);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Guest View Styles */
+.guest-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.guest-summary-card {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.guest-summary-card h3 {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.guest-summary-card .value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.guest-summary-card .value.critical-text {
+    color: var(--critical-color);
+}
+
+.guest-summary-card .value.high-text {
+    color: var(--danger-color);
+}
+
+.guest-devices-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.guest-device-card {
+    background: var(--light-bg);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--secondary-color);
+}
+
+.guest-device-ip {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.guest-device-info {
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.guest-device-cves {
+    font-size: 0.9rem;
+    color: var(--danger-color);
+    font-weight: 600;
+}
+
+.guest-device-cves.safe {
+    color: var(--success-color);
+}
+
+/* Vulnerabilities Section */
+.vulnerabilities-section {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.vulnerabilities-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.guest-vulnerabilities-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.guest-vuln-card {
+    background: var(--light-bg);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 5px solid var(--danger-color);
+}
+
+.guest-vuln-card.critical {
+    border-left-color: var(--critical-color);
+    background: #fef5f5;
+}
+
+.guest-vuln-card.high {
+    border-left-color: var(--danger-color);
+    background: #fef9f5;
+}
+
+.guest-vuln-header {
+    margin-bottom: 15px;
+}
+
+.guest-vuln-id {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.guest-vuln-id a {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+.guest-vuln-id a:hover {
+    text-decoration: underline;
+}
+
+.guest-vuln-device {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.guest-vuln-description {
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.guest-technical-details {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background: #f8f9fa;
+}
+
+.guest-technical-details summary {
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    user-select: none;
+    transition: background 0.2s;
+}
+
+.guest-technical-details summary:hover {
+    background: #e9ecef;
+}
+
+.guest-technical-details[open] summary {
+    border-bottom: 1px solid #e0e0e0;
+    background: #e9ecef;
+}
+
+.technical-description {
+    padding: 15px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.guest-vuln-suggestions {
+    background: white;
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 15px;
+}
+
+.guest-vuln-suggestions h4 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.suggestion-placeholder {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.suggestion-placeholder em {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--warning-color);
+}
+
+.suggestion-placeholder ul {
+    margin-left: 20px;
+    line-height: 1.8;
+}
+
+.good-news {
+    text-align: center;
+    color: var(--success-color);
+    font-size: 1.2rem;
+    padding: 40px;
+    font-weight: 600;
+}
+
+.loading-recommendations {
+    text-align: center;
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+    padding: 40px;
+    font-weight: 500;
+}
+
+/* AI Recommendation Styles */
+.recommendation-ai {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    padding: 15px;
+    border-radius: 6px;
+    border-left: 3px solid var(--secondary-color);
+}
+
+.recommendation-summary {
+    color: var(--primary-color);
+    font-size: 1rem;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: rgba(52, 152, 219, 0.1);
+    border-radius: 4px;
+}
+
+.recommendation-section {
+    margin: 15px 0;
+}
+
+.recommendation-section h5 {
+    color: var(--primary-color);
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.recommendation-section ul {
+    margin-left: 20px;
+    line-height: 1.8;
+    color: var(--text-primary);
+}
+
+.recommendation-section li {
+    margin-bottom: 5px;
+}
+
+.risk-explanation {
+    margin-top: 15px;
+    padding: 12px;
+    background: rgba(241, 196, 15, 0.1);
+    border-left: 3px solid var(--warning-color);
+    border-radius: 4px;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.suggestion-fallback {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.suggestion-fallback em {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--warning-color);
+    font-weight: 500;
+}
+
+.suggestion-fallback ul {
+    margin-left: 20px;
+    line-height: 1.8;
+}

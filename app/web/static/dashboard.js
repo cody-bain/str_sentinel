@@ -3,11 +3,38 @@
 
 
 let scanData = null;
+let currentTab = 'admin';
 
 // Initialize dashboard when page loads
 document.addEventListener('DOMContentLoaded', () => {
     loadDashboard();
 });
+
+// Switch between admin and guest tabs
+function switchTab(tab) {
+    currentTab = tab;
+
+    // Update tab buttons
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+
+    // Update tab content
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+    });
+
+    if (tab === 'admin') {
+        document.getElementById('admin-view').classList.add('active');
+    } else if (tab === 'guest') {
+        document.getElementById('guest-view').classList.add('active');
+        // Render guest view if not already rendered
+        if (scanData) {
+            renderGuestView(scanData);
+        }
+    }
+}
 
 // Load dashboard data from API
 async function loadDashboard() {
@@ -25,6 +52,11 @@ async function loadDashboard() {
         renderNetworkSummary(scanData.network_summary);
         renderScanInfo(scanData.scan_info);
         renderDevicesTable(scanData.devices);
+
+        // If guest view is active, render it too
+        if (currentTab === 'guest') {
+            renderGuestView(scanData);
+        }
 
     } catch (error) {
         showError(error.message);
@@ -306,3 +338,212 @@ window.onclick = function (event) {
         closeModal();
     }
 };
+
+// Guest View Rendering
+function renderGuestView(data) {
+    renderGuestScanInfo(data.scan_info);
+    renderGuestSummary(data);
+    renderGuestDevicesList(data.devices);
+    renderGuestVulnerabilitiesList(data.devices);
+}
+
+function renderGuestScanInfo(scanInfo) {
+    const container = document.getElementById('guest-scan-info');
+    const scanTime = new Date(scanInfo.timestamp).toLocaleString();
+    container.innerHTML = `
+        Last network scan: ${scanTime}
+    `;
+}
+
+function renderGuestSummary(data) {
+    const container = document.getElementById('guest-summary');
+    const totalDevices = data.devices.length;
+
+    // Count high/critical vulnerabilities
+    let criticalCount = 0;
+    let highCount = 0;
+
+    data.devices.forEach(device => {
+        const factors = device.risk_assessment?.factors?.cvss_severity || {};
+        criticalCount += factors.critical || 0;
+        highCount += factors.high || 0;
+    });
+
+    container.innerHTML = `
+        <div class="guest-summary-card">
+            <h3>Total Devices</h3>
+            <div class="value">${totalDevices}</div>
+        </div>
+        <div class="guest-summary-card">
+            <h3>Critical Vulnerabilities</h3>
+            <div class="value critical-text">${criticalCount}</div>
+        </div>
+        <div class="guest-summary-card">
+            <h3>High Vulnerabilities</h3>
+            <div class="value high-text">${highCount}</div>
+        </div>
+    `;
+}
+
+function renderGuestDevicesList(devices) {
+    const container = document.getElementById('guest-devices-list');
+
+    if (!devices || devices.length === 0) {
+        container.innerHTML = '<p>No devices found on network.</p>';
+        return;
+    }
+
+    let html = '<div class="guest-devices-grid">';
+
+    devices.forEach(device => {
+        const identity = device.identity || {};
+        const vendor = identity.vendor || 'Unknown';
+        const model = identity.model || 'Unknown';
+        const version = identity.version || '';
+        const cveCount = device.cve_results?.cve_count || 0;
+
+        html += `
+            <div class="guest-device-card">
+                <div class="guest-device-ip">${device.ip}</div>
+                <div class="guest-device-info">
+                    <strong>${vendor}</strong><br>
+                    ${model}${version ? ' ' + version : ''}
+                </div>
+                ${cveCount > 0 ? `<div class="guest-device-cves">${cveCount} vulnerabilities</div>` : '<div class="guest-device-cves safe">No known vulnerabilities</div>'}
+            </div>
+        `;
+    });
+
+    html += '</div>';
+    container.innerHTML = html;
+}
+
+async function renderGuestVulnerabilitiesList(devices) {
+    const container = document.getElementById('guest-vulnerabilities-list');
+
+    // Collect all high/critical CVEs across all devices
+    const vulnerabilities = [];
+
+    devices.forEach(device => {
+        const cves = device.cve_results?.cves || [];
+
+        cves.forEach(cve => {
+            const severity = (cve.cvss_severity || '').toLowerCase();
+            if (severity === 'critical' || severity === 'high') {
+                vulnerabilities.push({
+                    cve: cve,
+                    device: device,
+                    severity: severity
+                });
+            }
+        });
+    });
+
+    if (vulnerabilities.length === 0) {
+        container.innerHTML = '<p class="good-news">✓ No high or critical vulnerabilities detected on the network.</p>';
+        return;
+    }
+
+    // Sort by severity (critical first) and then by CVSS score
+    vulnerabilities.sort((a, b) => {
+        if (a.severity === 'critical' && b.severity !== 'critical') return -1;
+        if (a.severity !== 'critical' && b.severity === 'critical') return 1;
+        return (b.cve.cvss_score || 0) - (a.cve.cvss_score || 0);
+    });
+
+    // Show loading state
+    container.innerHTML = '<p class="loading-recommendations">🤖 AI Security Recommendations...</p>';
+
+    // Fetch AI recommendations
+    let aiRecommendations = {};
+    try {
+        const response = await fetch('/api/guest/bulk-recommendations');
+        if (response.ok) {
+            const data = await response.json();
+            aiRecommendations = data.recommendations || {};
+            console.log(`Loaded ${Object.keys(aiRecommendations).length} AI recommendations`);
+        } else {
+            console.warn('Could not load AI recommendations, using fallback');
+        }
+    } catch (error) {
+        console.error('Error fetching recommendations:', error);
+    }
+
+    let html = '<div class="guest-vulnerabilities-list">';
+
+    vulnerabilities.forEach(vuln => {
+        const cve = vuln.cve;
+        const device = vuln.device;
+        const identity = device.identity || {};
+
+        // Get AI recommendation for this CVE
+        const recommendation = aiRecommendations[cve.id];
+
+        html += `
+            <div class="guest-vuln-card ${vuln.severity}">
+                <div class="guest-vuln-header">
+                    <div class="guest-vuln-id">
+                        <a href="${cve.url}" target="_blank">${cve.id}</a>
+                        <span class="risk-badge risk-${vuln.severity}">${cve.cvss_score} (${cve.cvss_severity})</span>
+                    </div>
+                    <div class="guest-vuln-device">
+                        Affects: <strong>${device.ip}</strong> (${identity.vendor || 'Unknown'} ${identity.model || ''})
+                    </div>
+                </div>
+                <div class="guest-vuln-suggestions">
+                    <h4>🔒 Privacy & Safety Guidance:</h4>
+                    ${renderRecommendation(recommendation, vuln.severity)}
+                </div>
+                <details class="guest-technical-details">
+                    <summary>📋 Technical Details</summary>
+                    <div class="technical-description">${cve.description}</div>
+                </details>
+            </div>
+        `;
+    });
+
+    html += '</div>';
+    container.innerHTML = html;
+}
+
+function renderRecommendation(recommendation, severity) {
+    // If no AI recommendation available, show simple message
+    if (!recommendation) {
+        return `
+            <div class="suggestion-fallback">
+                <p><em>⚠️ AI recommendations not available</em></p>
+            </div>
+        `;
+    }
+
+    // Render AI-generated recommendation
+    return `
+        <div class="recommendation-ai">
+            ${recommendation.summary ? `<p class="recommendation-summary"><strong>${recommendation.summary}</strong></p>` : ''}
+            
+            ${recommendation.immediate_actions && recommendation.immediate_actions.length > 0 ? `
+                <div class="recommendation-section">
+                    <h5>🤖 AI Recommendations:</h5>
+                    <ul>
+                        ${recommendation.immediate_actions.map(action => `<li>${action}</li>`).join('')}
+                    </ul>
+                </div>
+            ` : ''}
+            
+            ${recommendation.best_practices && recommendation.best_practices.length > 0 ? `
+                <div class="recommendation-section">
+                    <h5>🏖️ During Your Stay:</h5>
+                    <ul>
+                        ${recommendation.best_practices.map(practice => `<li>${practice}</li>`).join('')}
+                    </ul>
+                </div>
+            ` : ''}
+            
+            ${recommendation.risk_explanation ? `
+                <div class="risk-explanation">
+                    <strong>Privacy Risk:</strong> ${recommendation.risk_explanation}
+                </div>
+            ` : ''}
+        </div>
+    `;
+}

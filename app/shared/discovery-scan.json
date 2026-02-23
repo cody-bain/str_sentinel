@@ -1,6 +1,6 @@
 {
   "scan_info": {
-    "timestamp": "2026-02-15T14:01:31.501652",
+    "timestamp": "2026-02-23T18:05:41.229597",
     "subnet": "172.20.0.0/24",
     "duration": null
   },
@@ -24,7 +24,7 @@
       "ip": "172.20.0.1",
       "status": "up",
       "hostname": null,
-      "mac": "12:F4:E7:13:B8:DC",
+      "mac": "72:F1:B5:26:A9:71",
       "identity": {
         "vendor": "Hikvision",
         "model": "DS-2CD2032-I",

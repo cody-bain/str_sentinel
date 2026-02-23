@@ -1,8 +1,14 @@
-from flask import Flask, render_template, jsonify, send_from_directory
+from flask import Flask, render_template, jsonify, send_from_directory, request
 import json
 import os
 import logging
 from datetime import datetime
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv('/app/.env')
+
+from ai_recommendations import generate_bulk_recommendations
 
 '''
 CODE GENERATED WITH ASSISTANCE FROM VARIOUS AI TOOLS.
@@ -129,6 +135,99 @@ def health_check():
         'timestamp': datetime.utcnow().isoformat(),
         'service': 'STR Sentinel Dashboard'
     })
+
+
+@app.route('/api/guest/recommendations', methods=['POST'])
+def get_guest_recommendations():
+    """
+    API endpoint to generate AI-powered recommendations for guest vulnerabilities.
+    Expects JSON with CVE and device information.
+    """
+    try:
+        vulnerability_data = request.json
+        
+        if not vulnerability_data:
+            return jsonify({
+                'error': 'No vulnerability data provided'
+            }), 400
+        
+        # Generate recommendation using bulk function with single item
+        vulnerabilities = [{
+            'cve_id': vulnerability_data.get('cve_id', ''),
+            'description': vulnerability_data.get('description', ''),
+            'cvss_score': vulnerability_data.get('cvss_score', 0),
+            'cvss_severity': vulnerability_data.get('cvss_severity', 'UNKNOWN'),
+            'device_ip': vulnerability_data.get('device_ip', 'unknown'),
+            'device_vendor': vulnerability_data.get('device_vendor', 'unknown'),
+            'device_model': vulnerability_data.get('device_model', 'unknown'),
+        }]
+        
+        recommendations = generate_bulk_recommendations(vulnerabilities)
+        cve_id = vulnerability_data.get('cve_id', '')
+        recommendation = recommendations.get(cve_id, {})
+        
+        return jsonify(recommendation)
+    
+    except Exception as e:
+        logging.error(f"Error generating recommendations: {e}")
+        return jsonify({
+            'error': 'Failed to generate recommendations',
+            'message': str(e)
+        }), 500
+
+
+@app.route('/api/guest/bulk-recommendations', methods=['GET'])
+def get_bulk_guest_recommendations():
+    """
+    API endpoint to generate AI-powered recommendations for all high/critical CVEs.
+    Reads from scan results and generates recommendations for guest view.
+    """
+    try:
+        if not os.path.exists(RESULTS_FILE):
+            return jsonify({
+                'error': 'No scan results available'
+            }), 404
+        
+        with open(RESULTS_FILE, 'r') as f:
+            data = json.load(f)
+        
+        devices = data.get('devices', [])
+        
+        # Collect all high/critical vulnerabilities
+        vulnerabilities = []
+        for device in devices:
+            identity = device.get('identity', {})
+            cves = device.get('cve_results', {}).get('cves', [])
+            
+            for cve in cves:
+                severity = (cve.get('cvss_severity', '')).upper()
+                if severity in ['CRITICAL', 'HIGH']:
+                    vulnerabilities.append({
+                        'cve_id': cve.get('id'),
+                        'description': cve.get('description', ''),
+                        'cvss_score': cve.get('cvss_score', 0),
+                        'cvss_severity': severity,
+                        'device_ip': device.get('ip', 'unknown'),
+                        'device_vendor': identity.get('vendor', 'unknown'),
+                        'device_model': identity.get('model', 'unknown'),
+                        'device_location': device.get('location', 'unknown')
+                    })
+        
+        # Generate recommendations
+        logging.info(f"Generating recommendations for {len(vulnerabilities)} high/critical vulnerabilities")
+        recommendations = generate_bulk_recommendations(vulnerabilities)
+        
+        return jsonify({
+            'count': len(recommendations),
+            'recommendations': recommendations
+        })
+    
+    except Exception as e:
+        logging.error(f"Error generating bulk recommendations: {e}")
+        return jsonify({
+            'error': 'Failed to generate recommendations',
+            'message': str(e)
+        }), 500
 
 
 if __name__ == '__main__':

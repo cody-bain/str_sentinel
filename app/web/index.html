@@ -23,7 +23,14 @@
 
     <!-- Main Content -->
     <div class="container">
-        <div id="dashboard-content">
+        <!-- Tab Navigation -->
+        <div class="tab-navigation">
+            <button class="tab-btn active" onclick="switchTab('admin')">Admin View</button>
+            <button class="tab-btn" onclick="switchTab('guest')">Guest View</button>
+        </div>
+
+        <!-- Admin View (Original Dashboard) -->
+        <div id="admin-view" class="tab-content active">
             <!-- Scan Info -->
             <div id="scan-info" class="scan-info"></div>
 
@@ -34,6 +41,27 @@
             <section class="devices-section">
                 <h2>Discovered Devices</h2>
                 <div id="devices-table"></div>
+            </section>
+        </div>
+
+        <!-- Guest View -->
+        <div id="guest-view" class="tab-content">
+            <!-- Scan Info -->
+            <div id="guest-scan-info" class="scan-info"></div>
+
+            <!-- Guest Summary -->
+            <section id="guest-summary" class="guest-summary"></section>
+
+            <!-- All Devices List -->
+            <section class="devices-section">
+                <h2>Devices on Network</h2>
+                <div id="guest-devices-list"></div>
+            </section>
+
+            <!-- High/Critical Vulnerabilities -->
+            <section class="vulnerabilities-section">
+                <h2>High & Critical Vulnerabilities</h2>
+                <div id="guest-vulnerabilities-list"></div>
             </section>
         </div>
     </div>
