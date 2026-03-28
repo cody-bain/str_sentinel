@@ -739,3 +739,264 @@ body {
     margin-left: 20px;
     line-height: 1.8;
 }
+
+/* ===== STR Compliance Profile Dropdown ===== */
+
+.compliance-dropdown {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.compliance-dropdown-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 18px 25px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.compliance-dropdown-toggle:hover {
+    opacity: 0.92;
+}
+
+.compliance-dropdown-toggle.open {
+    border-radius: 10px 10px 0 0;
+}
+
+.compliance-dropdown-arrow {
+    font-size: 0.9rem;
+    transition: transform 0.3s;
+}
+
+.compliance-dropdown-toggle.open .compliance-dropdown-arrow {
+    transform: rotate(90deg);
+}
+
+.compliance-dropdown-body {
+    display: none;
+    border: 1px solid var(--border-color);
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    padding: 25px;
+    background: var(--light-bg);
+}
+
+.compliance-dropdown-body.open {
+    display: block;
+}
+
+/* ===== Compliance Checklist Styles ===== */
+
+.compliance-header {
+    padding: 0 0 20px 0;
+    margin-bottom: 25px;
+}
+
+.compliance-header p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.compliance-progress {
+    margin-top: 18px;
+}
+
+.progress-stats {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+.progress-bar-track {
+    width: 100%;
+    height: 12px;
+    background: var(--light-bg);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--secondary-color), var(--success-color));
+    border-radius: 6px;
+    transition: width 0.4s ease;
+}
+
+.compliance-group {
+    background: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.compliance-group-header {
+    padding: 16px 25px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: var(--primary-color);
+}
+
+.compliance-group-header.govern  { background: #8e44ad; }
+.compliance-group-header.identify { background: #2980b9; }
+.compliance-group-header.protect  { background: #27ae60; }
+.compliance-group-header.detect   { background: #f39c12; }
+.compliance-group-header.respond  { background: #e74c3c; }
+.compliance-group-header.recover  { background: #16a085; }
+
+.compliance-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 25px;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s;
+}
+
+.compliance-item:last-child {
+    border-bottom: none;
+}
+
+.compliance-item:hover {
+    background-color: #f8f9fa;
+}
+
+.compliance-item.checked {
+    background-color: #f0faf4;
+}
+
+.compliance-checkbox-label {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.compliance-checkbox {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.compliance-checkmark {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    background: white;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.compliance-checkbox:checked + .compliance-checkmark {
+    background: var(--success-color);
+    border-color: var(--success-color);
+}
+
+.compliance-checkbox:checked + .compliance-checkmark::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 11px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.compliance-checkbox:disabled + .compliance-checkmark {
+    background: var(--success-color);
+    border-color: var(--success-color);
+    opacity: 0.8;
+    cursor: default;
+}
+
+.compliance-checkbox:disabled + .compliance-checkmark::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 11px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.compliance-checkbox-label:has(.compliance-checkbox:disabled) {
+    cursor: default;
+}
+
+.compliance-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.compliance-category {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin-bottom: 6px;
+}
+
+.compliance-task {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.5;
+    margin-bottom: 6px;
+}
+
+.compliance-nist {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    font-style: italic;
+}
+
+.compliance-sentinel-badge {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 3px 10px;
+    background: rgba(52, 152, 219, 0.12);
+    color: var(--secondary-color);
+    font-size: 0.78rem;
+    font-weight: 600;
+    border-radius: 12px;
+    letter-spacing: 0.3px;
+}
+
+.compliance-item.checked .compliance-task {
+    color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+    .compliance-item {
+        padding: 14px 16px;
+        gap: 12px;
+    }
+
+    .compliance-task {
+        font-size: 0.95rem;
+    }
+}

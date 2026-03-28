@@ -9,7 +9,7 @@ ALL AI-GENERATED CONTENT WAS REVIEWED, REVISED, AND ADAPTED TO MEET STR SENTINEL
 '''
 
 # Recog gem XML file location
-RECOG_SSH_FILE = '/var/lib/gems/3.3.0/gems/recog-3.1.25/recog/xml/ssh_banners.xml'
+RECOG_SSH_FILE = '/var/lib/gems/3.3.0/gems/recog-3.1.26/recog/xml/ssh_banners.xml'
 
 
 def recog_match(banner, xml_file):

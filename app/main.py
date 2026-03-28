@@ -93,6 +93,18 @@ def run_discovery(target, output=None):
         if not hosts_list:
             logging.warning("No hosts found. Check your network settings!")
 
+        # Tag the scanner's own IP (no MAC reported by nmap for localhost)
+        for host in hosts_list:
+            if host['mac'] is None:
+                host['identity'] = {
+                    "vendor": "STR Sentinel",
+                    "model": "Security Scanner",
+                    "version": "1.0",
+                    "detection_method": "Self",
+                }
+                host['is_self'] = True
+                logging.info(f"Scanner identified at {host['ip']} (self)")
+
         # --- PHASE 2: PROTOCOL IDENTIFICATION (mDNS) ---
         # Only run if we hosts are found to correlate with
         if hosts_list:

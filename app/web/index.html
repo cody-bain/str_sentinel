@@ -37,6 +37,23 @@
             <!-- Network Summary -->
             <section id="network-summary" class="summary-grid"></section>
 
+            <!-- STR Compliance Profile (collapsible) -->
+            <section class="compliance-dropdown">
+                <button class="compliance-dropdown-toggle" onclick="toggleComplianceDropdown()">
+                    <span>📋 STR Compliance Profile</span>
+                    <span class="compliance-dropdown-arrow">▶</span>
+                </button>
+                <div id="compliance-dropdown-body" class="compliance-dropdown-body">
+                    <div class="compliance-header">
+                        <p>NIST Cybersecurity Framework tasks tailored for Short-Term Rental hosts. Items marked with
+                            <strong>STR Sentinel</strong> are automatically handled by this tool.
+                        </p>
+                        <div id="compliance-progress" class="compliance-progress"></div>
+                    </div>
+                    <div id="compliance-checklist"></div>
+                </div>
+            </section>
+
             <!-- Devices Table -->
             <section class="devices-section">
                 <h2>Discovered Devices</h2>

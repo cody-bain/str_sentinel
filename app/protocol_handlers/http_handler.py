@@ -15,8 +15,8 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Recog gem XML file locations
 RECOG_FILES = {
-    'server': '/var/lib/gems/3.3.0/gems/recog-3.1.25/recog/xml/http_servers.xml',
-    'auth': '/var/lib/gems/3.3.0/gems/recog-3.1.25/recog/xml/http_wwwauth.xml',
+    'server': '/var/lib/gems/3.3.0/gems/recog-3.1.26/recog/xml/http_servers.xml',
+    'auth': '/var/lib/gems/3.3.0/gems/recog-3.1.26/recog/xml/http_wwwauth.xml',
 }
 
 
