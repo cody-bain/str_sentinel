@@ -319,7 +319,7 @@ cat test/cpe-matching-report.json
 - **Product Match Rate:** Percentage with correct product identification
 - **CVE Coverage:** Number of devices with known vulnerabilities
 
-### Results (February 11, 2026)
+### Results
 
 ```
 Total Devices Tested:        100 (STR-relevant IoT devices)
